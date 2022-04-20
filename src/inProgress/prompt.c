@@ -23,6 +23,7 @@
 
 		### CTRL-D
 			- [ ] DUMMY RESPONSE
+			- [ ] Free all malloced vars
 			- [ ] exit shell
 
 		### CTRL-\

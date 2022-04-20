@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/20 00:51:54 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/04/20 14:50:36 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,18 @@ typedef struct s_heredoc
 
 typedef struct s_tab_cmds
 {
-	char		*cmd;           // Full block of command
 	char		**cmd_split;	//cmd splitted with split_custom()
-	char		flag;   		//Bitwise flags (See *)
+	char		*cmd;           // Full block of command
+	char		*filein;
+	char		flag; 		//Bitwise flags (See *)
 	t_heredoc	*tab_heredoc;	//Index of command with heredoc
-
-}			t_tab_cmds;
+}			t_cmd_block;
 
 typedef struct s_mnshl
 {
-	/* ENV */
-	char 	**envp;
-	int		last_error;
-	/* data */
-    t_tab_cmds *cmds_tab;
+	char 			**envp;
+	int				last_errno;
+    t_cmd_block 	*cmds_tab;
 }			t_mnshl;
 
 // prompt.c //
