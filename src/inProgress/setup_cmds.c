@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:15 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/20 00:48:23 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:06:24 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,23 @@
 
 #include "minishell.h"
 
-/* 	cmd "args $opts |  'cmd' args op" |
- 	cmd < filein < filein |
+/* 	
+	
+
+Receives : 	t_mnshl vars;
+			WITH char *cmd filled with:
+				-> 1 : cmd < file1 |
+				-> 2 : cmd args opt |
+Does :
+		{
+		->	char		**cmd_split;		["cmd"]
+		X	char		*cmd;				"cmd < file1 |"
+		->	char		*filein;			"file1"
+		X	char		flag;				
+		->	t_heredoc	*tab_heredoc;		[] (Fills with t_heredoc;)
+		}
+
+This function 
 */
 void	split_custom()
 {
@@ -34,8 +49,17 @@ typedef struct s_tab_cmds
 	char	flag;
 	char	*file_to_open;
 }
-*/
 
+Receives : 
+		-> 1 : cmd < filein |
+		-> 2 : cmd args opt |
+		 ...
+Sends :
+		Nothing
+
+
+This function expand cmds_tab and append the received t_cmd_block
+*/
 void	append_cmd(t_mnshl *vars, char *line, int i_start, int i_end)
 {
 	WHOAMI	
@@ -54,8 +78,14 @@ void	append_cmd(t_mnshl *vars, char *line, int i_start, int i_end)
 		0x32 -> heredoc
 		0x64 -> 
 		0x128 ->  
+
+Receives : cmd < filein | cmd args opt | cmd args opts | cmd args op | cmd > fileout
+Sends : 
+		-> 1 : cmd < filein |
+		-> 2 : cmd args opt |
+		 ...
+This function split to commands into blocks and send each block to append_cmd
 */
-// cmd < filein | cmd args opt |  cmd args "opts |  'cmd' args op | cmd > fileout
 void	setup_cmds(t_mnshl *vars, char *line)
 {
 	WHOAMI
