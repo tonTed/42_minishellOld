@@ -2,5 +2,5 @@
 
 void    here_doc_run(t_mnshl *vars)
 {
-    printf("%s\n", __func__);
+    WHOAMI
 }
