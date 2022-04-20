@@ -1,3 +1,4 @@
+#include "../include/minishell.h"
 
 /*
 
@@ -41,5 +42,11 @@
 
 void	prompt_DUMMY()
 {
-	
+	char	*line;
+
+	while (42)
+	{
+		line = readline(PROMPT);
+		ft_execute_line(line);
+	}
 }
