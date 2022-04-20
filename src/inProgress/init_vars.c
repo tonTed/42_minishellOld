@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 10:29:49 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/20 00:46:12 by jbernard         ###   ########.fr       */
+/*   Created: 2022/04/20 00:17:15 by jbernard          #+#    #+#             */
+/*   Updated: 2022/04/20 00:44:54 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envp)
+void	init_vars(t_mnshl *vars, char **envp)
 {
 	WHOAMI
-	t_mnshl	vars;
-	
-	printf(BMAG "hello %s\n" RESET, argv[0]);
-
-	init_vars(&vars, envp);
-	prompt_DUMMY();
+	// Init last_error to 0
+	// Function used only to copy envp to the vars functions copy_env()
 }

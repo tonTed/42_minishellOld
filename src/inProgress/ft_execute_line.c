@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_execute_line.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
+/*   Updated: 2022/04/20 01:41:37 by jbernard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 
 	DUMMY RESPONSE IN FIRST TIME
@@ -34,13 +46,14 @@
 // cmd < filein | cmd args opt |  cmd "args $opts |  'cmd' args op" | cmd > fileout
 // cmd < filein | cmd args opt |  cmd args "opts |  < < <'cmd' args op | cmd > fileout
 
-void	ft_execute_line(char *line)
+void	ft_execute_line(t_mnshl *vars, char *line)
 {
-	t_mnshl		*vars;
+	WHOAMI
 
 	// function to append each cmds in tab
 		// setup_cmds(vars, line);
 	// function to open here_doc
 		// here_doc_run(vars);
 	// function to launch cmds (execve)
+		//execute_all_blocks(vars, )
 }

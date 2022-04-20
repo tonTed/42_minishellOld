@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_cmds.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 00:47:15 by jbernard          #+#    #+#             */
+/*   Updated: 2022/04/20 00:48:23 by jbernard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // cmd < filein | cmd args opt |  cmd args $opts |  'cmd' args op | cmd > fileout
 // cmd < filein | cmd args opt |  cmd args "opts |  'cmd' args op | cmd > fileout
 // cmd < filein | cmd args opt |  cmd "args $opts |  'cmd' args op" | cmd > fileout
@@ -26,6 +38,7 @@ typedef struct s_tab_cmds
 
 void	append_cmd(t_mnshl *vars, char *line, int i_start, int i_end)
 {
+	WHOAMI	
 	// append new cmd block in tab
 	// function custom split cmd in splitted tab (t_tab_cmds struct)
 }
@@ -45,6 +58,7 @@ void	append_cmd(t_mnshl *vars, char *line, int i_start, int i_end)
 // cmd < filein | cmd args opt |  cmd args "opts |  'cmd' args op | cmd > fileout
 void	setup_cmds(t_mnshl *vars, char *line)
 {
+	WHOAMI
 	char 	flag;
 	int		i_current;
 	int		i_start;

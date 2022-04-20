@@ -15,23 +15,26 @@
 	# Faire des test de la vrai fonction:
 
 	# Workflow:
-		[ ] print prompt
-		[ ] listen signals:
-			[ ] CTRL-C new prompt on new line:
-				[ ] DUMMY RESPONSE
-				[ ] Keep stdin on old line
-				[ ] new prompt
-			[ ] CTRL-D
-				[ ] DUMMY RESPONSE
-				[ ] exit shell
-			[ ] CTRL-\
-				[ ] DUMMY RESPONSE
-			[ ] Enter ou '\n'
-				[ ] DUMMY RESPONSE
-				[ ] ft_execute(line) -> string 
-			[ ] up arrow, down arrow
-				[ ] DUMMY RESPONSE
-				[ ] Move through history
+		# **Listen Signals:**
+		### CTRL-C new prompt on new line:
+			- [ ] DUMMY RESPONSE
+			- [ ] Keep stdin on old line
+			- [ ] new prompt
+
+		### CTRL-D
+			- [ ] DUMMY RESPONSE
+			- [ ] exit shell
+
+		### CTRL-\
+			- [ ] DUMMY RESPONSE
+
+		### Enter ou '\n'
+			- [ ] DUMMY RESPONSE
+			- [ ] ft_execute(line) -> string 
+
+		### Up arrow, down arrow
+			- [ ] DUMMY RESPONSE
+			- [ ] Move through history
 
 	# Edge case:
 
@@ -42,6 +45,7 @@
 
 void	prompt_DUMMY()
 {
+	WHOAMI
 	char	*line;
 
 	while (42)
