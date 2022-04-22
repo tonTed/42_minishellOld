@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exec_blocks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:50:52 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/20 01:54:19 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:50:48 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_execve()
+int	exec_execve(t_mnshl *vars)
 {
 	WHOAMI
+	return (EXIT_SUCCESS);
 }
 
-void	exec_builtin()
+int	exec_builtin(t_mnshl *vars)
 {
 	WHOAMI
 	// struct {
@@ -30,16 +31,18 @@ void	exec_builtin()
 	// if (cmd == funcs[0].name)
 	// 	funcs[i].f()
 	// 
+	return (EXIT_SUCCESS);
 }
 
- 
-
-void	execute_all_blocks(t_mnshl *vars)
+int	execute_all_blocks(t_mnshl *vars)
 {
 	WHOAMI
+	
 	// Iterate through all the cmds and ...
 			// Is it a built-in?
 				//YES : Execute built-in
 				// NO : Execute execve(...)
-
+	exec_execve(vars);
+	exec_builtin(vars);
+	return (EXIT_SUCCESS);
 }

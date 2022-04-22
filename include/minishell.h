@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/20 14:50:36 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:56:06 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_heredoc
     char    *eof;
 }   t_heredoc;
 
+typedef	char* str;
+
 typedef struct s_tab_cmds
 {
 	char		**cmd_split;	//cmd splitted with split_custom()
@@ -50,20 +52,22 @@ typedef struct s_mnshl
 }			t_mnshl;
 
 // prompt.c //
-void	prompt_DUMMY(void);
+int	prompt_DUMMY(str *line);
 
 // ft_execute_line.c //
-void	ft_execute_line(char *line);
+int	parse_line(t_mnshl *vars, char *line);
 
 // init_vars.c //
 void	init_vars(t_mnshl *vars, char **envp);
+void	free_exit(t_mnshl *vars);
 
 // heredoc.c //
-void    open_heredoc(t_mnshl *vars)
+int heredoc(t_mnshl *vars);
 
+int	execute_all_blocks(t_mnshl *vars);
+int	execute(t_mnshl *vars);
 
-
-
+int	clean_up(t_mnshl *vars, char *line);
 
 /*
 --- * ---

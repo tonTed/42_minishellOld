@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 00:48:01 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/22 11:33:31 by tblanco          ###   ########.fr       */
+/*   Created: 2022/04/22 11:51:20 by tblanco           #+#    #+#             */
+/*   Updated: 2022/04/22 11:53:50 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int heredoc(t_mnshl *vars)
+int	clean_up(t_mnshl *vars, char *line)
 {
-    WHOAMI
-    return (EXIT_SUCCESS);
-}
+	WHOAMI
+
+	return(EXIT_SUCCESS);
+} 
