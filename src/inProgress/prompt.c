@@ -44,10 +44,24 @@
 
 */
 
+void	ctrl_c_sig()
+{
+	WHOAMI
+}
+
+void	ctrl_d_sig()
+{
+	WHOAMI
+	exit(3);
+}
+
+
+
 int	prompt_DUMMY(str *line)
 {
 	WHOAMI
-
+	signal(SIGINT, ctrl_c_sig);
+	signal(SIGMINE, ctrl_d_sig);
 	*line = readline(PROMPT);
 	return (EXIT_SUCCESS);
 }
