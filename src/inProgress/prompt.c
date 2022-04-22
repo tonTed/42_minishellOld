@@ -44,14 +44,10 @@
 
 */
 
-void	prompt_DUMMY()
+int	prompt_DUMMY(str *line)
 {
 	WHOAMI
-	char	*line;
 
-	while (42)
-	{
-		line = readline(PROMPT);
-		ft_execute_line(line);
-	}
+	*line = readline(PROMPT);
+	return (EXIT_SUCCESS);
 }
