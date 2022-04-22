@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execute_line.c                                  :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/20 14:37:45 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/04/22 11:23:50 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 // cmd < filein | cmd args opt |  cmd "args $opts |  'cmd' args op" | cmd > fileout
 // cmd < filein | cmd args opt |  cmd args "opts |  < < <'cmd' args op | cmd > fileout
 
-void	ft_execute_line(t_mnshl *vars, char *line)
+int	parse_line(t_mnshl *vars, char *line)
 {
 	WHOAMI
 
@@ -59,4 +59,5 @@ void	ft_execute_line(t_mnshl *vars, char *line)
 		//execute_all_blocks(vars, )
 	// Function to clean up cmds
 		//clean_up();
+	return (EXIT_SUCCESS);
 }

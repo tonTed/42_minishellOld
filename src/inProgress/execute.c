@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 00:48:01 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/22 11:33:31 by tblanco          ###   ########.fr       */
+/*   Created: 2022/04/22 11:25:50 by tblanco           #+#    #+#             */
+/*   Updated: 2022/04/22 11:56:09 by tblanco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int heredoc(t_mnshl *vars)
+int	execute(t_mnshl *vars)
 {
-    WHOAMI
-    return (EXIT_SUCCESS);
+	heredoc(vars);
+	execute_all_blocks(vars);
+	return (EXIT_SUCCESS);
 }
