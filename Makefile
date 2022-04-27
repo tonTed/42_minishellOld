@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 19:00:35 by tonted            #+#    #+#              #
-#    Updated: 2022/04/12 19:39:19 by tonted           ###   ########.fr        #
+#    Updated: 2022/04/27 00:34:44 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,11 @@ leak =
 
 test	: all
 	$(leak) ./minishell
-	
+
+docker	:
+	docker build . -t 42:minishell
+	docker run --rm -it --name minishell -v /Users/tonted/42/minishell:/minishell 42:minishell
+
 
 .PHONY		: clean fclean all re $(OBJDIR) buildrepo print
 

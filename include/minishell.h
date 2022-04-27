@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/22 12:29:59 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/04/27 00:46:09 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 # define DQ '\"'
 # define Q '\''
 # define PIPE '|'
-# define WHOAMI printf(GRN"Function "BMAG"%s"GRN" ran "BGRN"SUCCESSFULLY\n"RESET, __func__);
+
+extern int g_status;
+
+// # define WHOAMI printf(GRN"Function "BMAG"%s"GRN" ran "BGRN"SUCCESSFULLY\n"RESET, __func__);
+# define WHOAMI ;
 
 /*
 	cmd: 		block command in string
@@ -53,7 +57,7 @@ typedef struct s_mnshl
 }			t_mnshl;
 
 // prompt.c //
-int	prompt_DUMMY(str *line);
+char	*prompt_DUMMY();
 
 // ft_execute_line.c //
 int	parse_line(t_mnshl *vars, char *line);

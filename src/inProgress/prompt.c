@@ -49,19 +49,18 @@ void	ctrl_c_sig()
 	WHOAMI
 }
 
-void	ctrl_d_sig()
-{
-	WHOAMI
-	exit(3);
-}
-
-
-
-int	prompt_DUMMY(str *line)
+char	*prompt_DUMMY()
 {
 	WHOAMI
 	signal(SIGINT, ctrl_c_sig);
-	signal(SIGMINE, ctrl_d_sig);
-	*line = readline(PROMPT);
-	return (EXIT_SUCCESS);
+
+	char *line;
+	line = readline(PROMPT);
+	add_history(line);
+	if (!line)
+	{
+		printf("exit\n");
+		g_status = 1;
+	}
+	return (line);
 }
