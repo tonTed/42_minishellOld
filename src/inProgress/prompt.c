@@ -49,6 +49,13 @@ void	ctrl_c_sig()
 	WHOAMI
 }
 
+void	ctrl_d_sig()
+{
+	ft_putstr_fd("exit\n", 1);
+	g_status = 1;
+	WHOAMI
+}
+
 char	*prompt_DUMMY()
 {
 	WHOAMI
@@ -58,9 +65,6 @@ char	*prompt_DUMMY()
 	line = readline(PROMPT);
 	add_history(line);
 	if (!line)
-	{
-		printf("exit\n");
-		g_status = 1;
-	}
+		ctrl_d_sig();
 	return (line);
 }
