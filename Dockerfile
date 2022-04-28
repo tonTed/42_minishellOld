@@ -1,8 +1,12 @@
-FROM ubuntu:latest
+FROM ubuntu:focal
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y clang make valgrind curl
+# Fix enter timezone issue
+ENV TZ=America/Montreal
+ENV TERM=xterm-256color
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
-    -t robbyrussell
+RUN apt-get update -y && apt-get -y  upgrade
+RUN apt-get install -y clang make curl
+RUN apt-get install -y valgrind
 
 WORKDIR /minishell
