@@ -6,11 +6,13 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:29:49 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/27 08:28:48 by tonted           ###   ########.fr       */
+/*   Updated: 2022/04/27 21:20:46 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int g_status;
 
 int	minishell_loop(t_mnshl *vars)
 {

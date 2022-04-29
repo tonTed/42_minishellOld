@@ -44,13 +44,6 @@
 
 */
 
-void	ctrl_d_sig()
-{
-	WHOAMI
-	//printf("exit\n");
-	//g_status = 1;
-}
-
 void	ctrl_c_sig()
 {
 	WHOAMI
@@ -72,12 +65,6 @@ char	*prompt_DUMMY()
 	line = readline(PROMPT);
 	add_history(line);
 	if (!line)
-<<<<<<< HEAD
-	{
 		ctrl_d_sig();
-	}
-=======
-		ctrl_d_sig();
->>>>>>> d89e447e02c9039ffdfdf324e0e605df32e3e69d
 	return (line);
 }
