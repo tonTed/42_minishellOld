@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/22 11:23:50 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/04/28 23:03:07 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,24 @@
 		[ ]  
 
 */
-
-
+	
+/*
+|*	Description : Parse the line command.
+|*		- Split command on each operators {`|`}, and create a {t_cmd_block} for each.
+|*		- Parse each block and set the struct {t_cmd_block}
+|*
+|*	Arguments : 
+|*		{TYPE} {ARG1 NAME} : 
+|*		{TYPE} {ARG2 NAME} :
+|*	
+|*	Variables :
+|*		char	flag: flags for manage {`'`: 0x1, `"`: 0x2}
+|*	
+|*	
+|*
+|*	Returns : 
+|*		{TYPE} {VAR NAME} : 
+*/
 
 
 // cmd < filein | cmd args opt |  cmd args $opts |  'cmd' args op | cmd > fileout
@@ -50,14 +66,22 @@
 int	parse_line(t_mnshl *vars, char *line)
 {
 	WHOAMI
+	char 	flag;
+	ssize_t	i_begin;
+	ssize_t	i_end;
 
-	// function to append each cmds in tab
-		// setup_cmds(vars, line);
-	// function to open here_doc
-		// open_heredoc(t_mnshl *vars)
-	// function to launch cmds (execve)
-		//execute_all_blocks(vars, )
-	// Function to clean up cmds
-		//clean_up();
+	i_begin = 0;
+	i_end = 0;
+	while (line[i_end])
+	{
+		if (is_quote(line[i_end]))
+			i_end = find_next_quote(line);
+		if (i_end == -1)
+			return (EXIT_FAILURE);
+		if (is_operator(line[i_end]))
+			i_begin = (create_cmd_block(line, i_begin, i_end, vars));
+		i_end++;
+	}
+
 	return (EXIT_SUCCESS);
 }

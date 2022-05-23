@@ -4,3 +4,4 @@ libraries/readline/libreadline.a
 libraries/libft/obj
 libraries/libft/libft.a
 minishell
+.idea
