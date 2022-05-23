@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/28 11:20:52 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/23 18:38:57 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # define Q '\''
 # define PIPE '|'
 
+
+/* TODO explain each status
+** 0: all is good!
+*/
 extern int g_status;
 
 //# define WHOAMI ;
@@ -45,7 +49,7 @@ typedef struct s_tab_cmds
 	char		**cmd_split;	//cmd splitted with split_custom()
 	char		*cmd;           // Full block of command
 	char		*filein;
-	char		flag; 		//Bitwise flags (See *)
+	char		flag; 			//Bitwise flags (See *)
 	t_heredoc	*tab_heredoc;	//Index of command with heredoc
 }			t_cmd_block;
 
@@ -72,6 +76,15 @@ int heredoc(t_mnshl *vars);
 int	execute_all_blocks(t_mnshl *vars);
 int	execute(t_mnshl *vars);
 
+/* Remove line from vars.envp
+ *
+ *		Arguments : 
+ *			{TYPE} {ARG1 NAME} : 
+ *			{TYPE} {ARG2 NAME} :
+ *
+ *		Returns : 
+ *			{TYPE} {VAR NAME} : 
+ */
 int	clean_up(t_mnshl *vars, char *line);
 
 /*

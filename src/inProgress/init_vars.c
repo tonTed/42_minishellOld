@@ -6,14 +6,14 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:17:15 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/28 08:27:15 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/23 19:01:13 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-char	**copy_env(char **envp)
+char	**tabstrdup(char **envp)
 {
 	char	**env;
 	int		i;
@@ -30,7 +30,7 @@ void	init_vars(t_mnshl *vars, char **envp)
 {
 	WHOAMI
 	vars->last_errno = 0;
-	vars->envp = copy_env(envp);
+	vars->envp = tabstrdup(envp);
 	vars->cmds_tab = NULL;
 }
 
