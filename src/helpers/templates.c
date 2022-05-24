@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   templates.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 10:46:44 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/22 11:14:38 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:07:20 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,15 @@
 
 //________________________________________________________________________________________________
 
-
-/*{FUNCTION PROTOTYPE}
-|*
-|*		Description : This function uses ... 
-|*
-|*		Arguments : 
-|*			{TYPE} {ARG1 NAME} : 
-|*			{TYPE} {ARG2 NAME} :
-|*
-|*		Returns : 
-|*			{TYPE} {VAR NAME} : 
-*/
+/* This function uses ...
+ *
+ *	Arguments : 
+ *		{TYPE} {ARG1 NAME} :
+ *		{TYPE} {ARG2 NAME} :
+ *
+ *	Returns : 
+ *		{TYPE} : 
+ */
 
 
 //_________________________________________________________________________________________________

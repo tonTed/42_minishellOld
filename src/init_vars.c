@@ -3,26 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tblanco <tblanco@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:17:15 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/22 11:54:40 by tblanco          ###   ########.fr       */
+/*   Updated: 2022/05/23 19:26:51 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// TODO Comments
+// TODO Change name to tabstr
+// TODO Change to file general utils
+char	**tabstrdup(char **envp)
+{
+	char	**env;
+	int		i;
+
+	env = (char **)malloc(sizeof(char *) * (ft_strtablen(envp) + 1));
+	i = 0;
+	while (*envp)
+		env[i++] = ft_strdup(*envp++);
+	env[i] = NULL;
+	return (env);
+}
+
 void	init_vars(t_mnshl *vars, char **envp)
 {
 	WHOAMI
-	// Init last_errno to 0
-	// Function used only to copy envp to the vars functions copy_env()
-	// Every malloced variables must be init as NULL
+	vars->last_errno = 0;
+	vars->envp = tabstrdup(envp);
+	vars->cmds_tab = NULL;
 }
 
+/* Free all befor exit
+ *
+ *	Arguments : 
+ *		{TYPE} {ARG1 NAME} :
+ *		{TYPE} {ARG2 NAME} :
+ *
+ *	Returns : 
+ *		{TYPE} : 
+ */
 void	free_exit(t_mnshl *vars)
 {
 	WHOAMI
-	// do a list of status and print status error.
+	ft_freetabstr(&vars->envp);
 	exit(1);
 }

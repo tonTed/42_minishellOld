@@ -44,16 +44,24 @@
 
 */
 
-void	ctrl_d_sig()
-{
-	WHOAMI
-	//printf("exit\n");
-	//g_status = 1;
-}
-
+/* New prompt removing input pending
+ *
+ *	Arguments : 
+ *		{TYPE} {ARG1 NAME} :
+ *		{TYPE} {ARG2 NAME} :
+ *
+ *	Returns : 
+ *		{TYPE} : 
+ */
+//TODO comments
+// http://bashcookbook.com/bashinfo/source/readline-7.0/doc/readline.pdf
 void	ctrl_c_sig()
 {
 	WHOAMI
+	// rl_replace_line(NULL, 0);
+	rl_line_buffer = PROMPT;
+	rl_redisplay();
+	g_status = 2;
 }
 
 void	ctrl_d_sig()
@@ -63,6 +71,7 @@ void	ctrl_d_sig()
 	WHOAMI
 }
 
+//TODO comments
 char	*prompt_DUMMY()
 {
 	WHOAMI
@@ -72,12 +81,6 @@ char	*prompt_DUMMY()
 	line = readline(PROMPT);
 	add_history(line);
 	if (!line)
-<<<<<<< HEAD
-	{
 		ctrl_d_sig();
-	}
-=======
-		ctrl_d_sig();
->>>>>>> d89e447e02c9039ffdfdf324e0e605df32e3e69d
 	return (line);
 }
