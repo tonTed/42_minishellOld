@@ -1,5 +1,23 @@
 #include "minishell.h"
 
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	len_needle;
+
+	if (*needle == '\0')
+		return ((char *)haystack);
+	len_needle = ft_strlen(needle);
+	while (*haystack && len-- >= len_needle)
+	{
+		if (*haystack == *needle && !ft_strncmp(haystack, needle, len_needle))
+			return ((char *)haystack);
+		haystack++;
+	}
+	return (NULL);
+}
+
+/* _____________________________________________________________________________________________*/
+
 /* Remove line from vars.envp
  *
  *	Arguments : 
@@ -12,7 +30,26 @@
 // TODO check is case sensitive
 void envp_remove_line(t_mnshl *vars, char *name)
 {
-
+	int i;
+	int deleted;
+	deleted = 0;
+	i = 0;
+	while (vars->envp[i])
+	{
+		if (!ft_strncmp(vars->envp[i], name, ft_strlen(name)) && !deleted)
+		{	
+			if (vars->envp[i][ft_strlen(name)] == '=')
+				deleted = 1;
+		}
+		if (deleted)
+		{
+			if (vars->envp[i + 1])
+				vars->envp[i] = ft_strdup(vars->envp[i + 1]);
+			else 
+				vars->envp[i] = NULL;
+		}
+		i++;
+	}
 }
 
 /* Set line in envp from main structure of program. If not exists the

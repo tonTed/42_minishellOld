@@ -72,6 +72,9 @@ int	parse_line(t_mnshl *vars, char *line);
 void	init_vars(t_mnshl *vars, char **envp);
 void	free_exit(t_mnshl *vars);
 
+// envp_utils.c //
+void	envp_remove_line(t_mnshl *vars, char *name);
+
 // heredoc.c //
 int heredoc(t_mnshl *vars);
 
