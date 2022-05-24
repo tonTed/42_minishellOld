@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/23 20:55:55 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/24 08:42:08 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,3 +101,5 @@ int	clean_up(t_mnshl *vars, char *line);
 		0x128 ->  
 ---------
 */
+
+int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars);

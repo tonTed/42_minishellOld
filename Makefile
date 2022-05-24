@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 19:00:35 by tonted            #+#    #+#              #
-#    Updated: 2022/05/23 19:28:08 by tonted           ###   ########.fr        #
+#    Updated: 2022/05/24 09:00:40 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ OBJDIRS = $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
 # Create a list of *.c sources in DIRS
 SRCS = $(wildcard src/*.c)
 SRCS += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+SRCS_TEST =  $(wildcard test/*.c)
 
 # Define objects for all sources
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
@@ -77,6 +78,13 @@ leak =
 
 test	: all
 	$(leak) ./minishell
+
+utest	:
+	@echo "Hello utest"
+	SRCS = $(filter-out src/main.c, $(SRCS))
+# echo $(SRCS_TEST)
+# SRCS += $(SRCS_TEST)
+# echo $(SRCS)
 
 docker	:
 	docker build . -t 42:minishell
