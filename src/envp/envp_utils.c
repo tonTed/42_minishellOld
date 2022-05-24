@@ -1,5 +1,29 @@
 #include "minishell.h"
 
+void	print_envp(char **envp, char *header)
+{
+	int i = 0;
+	printf("************ %s : ***************\n", header);
+	while (envp[i])
+	{
+		printf("%s\n", envp[i]);
+		i++;
+	}
+	printf("************ Line count (i) : %d ***************\n", i);
+}
+
+void	envp_utils_test(t_mnshl *vars)
+{
+	
+	print_envp(vars->envp, "BEFORE TEST");
+	envp_remove_line(vars, "ITER");
+	envp_remove_line(vars, "ITER");
+	envp_remove_line(vars, "PAGER");
+	envp_remove_line(vars, "LANG");
+	envp_remove_line(vars, "_");
+	print_envp(vars->envp, "AFTER TEST");
+}
+
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	len_needle;

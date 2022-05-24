@@ -73,6 +73,7 @@ void	init_vars(t_mnshl *vars, char **envp);
 void	free_exit(t_mnshl *vars);
 
 // envp_utils.c //
+void	envp_utils_test(t_mnshl *vars); // TEMPORARY TESTING FUNCTION
 void	envp_remove_line(t_mnshl *vars, char *name);
 
 // heredoc.c //

@@ -41,6 +41,7 @@ int main(int argc, char **argv, char **envp)
 	t_mnshl	vars;
 	
 	init_vars(&vars, envp);
+	envp_utils_test(&vars);
 	minishell_loop(&vars);
 	free_exit(&vars);
 }
