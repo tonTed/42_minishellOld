@@ -75,6 +75,7 @@ void	free_exit(t_mnshl *vars);
 // envp_utils.c //
 void	envp_utils_test(t_mnshl *vars); // TEMPORARY TESTING FUNCTION
 void	envp_remove_line(t_mnshl *vars, char *name);
+char 	*envp_get_value_line(t_mnshl *vars, char *name);
 
 // heredoc.c //
 int heredoc(t_mnshl *vars);

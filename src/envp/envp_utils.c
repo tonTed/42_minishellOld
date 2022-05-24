@@ -14,14 +14,11 @@ void	print_envp(char **envp, char *header)
 
 void	envp_utils_test(t_mnshl *vars)
 {
-	
-	print_envp(vars->envp, "BEFORE TEST");
-	envp_remove_line(vars, "ITER");
-	envp_remove_line(vars, "ITER");
-	envp_remove_line(vars, "PAGER");
-	envp_remove_line(vars, "LANG");
-	envp_remove_line(vars, "_");
-	print_envp(vars->envp, "AFTER TEST");
+	printf("_ : %s\n", envp_get_value_line(vars, "_"));
+	printf("ITER : %s\n", envp_get_value_line(vars, "ITER"));
+	printf("HOMEBREW : %s\n", envp_get_value_line(vars, "HOMEBREW"));
+	printf("HOMEBREW_CACHE : %s\n", envp_get_value_line(vars, "HOMEBREW_CACHE"));
+	printf("USER : %s\n", envp_get_value_line(vars, "USER"));
 }
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
@@ -107,8 +104,23 @@ void envp_set_line(t_mnshl *vars, char *name, char *value)
 // TODO check is case sensitive
 char *envp_get_value_line(t_mnshl *vars, char *name)
 {
-	char *ret;
+	char 	*ret;
+	int 	i;
 
+	i = 0;
+	ret = NULL;
+	while (vars->envp[i])
+	{
+		if (!ft_strncmp(vars->envp[i], name, ft_strlen(name)))
+		{	
+			if (vars->envp[i][ft_strlen(name)] == '=')
+			{
+				ret = &vars->envp[i][ft_strlen(name) + 1];
+				break ;
+			}
+		}
+		i++;
+	}
 	return (ret);
 }
 
