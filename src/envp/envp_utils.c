@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   envp_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
+/*   Updated: 2022/05/24 16:26:34 by jbernard         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	print_envp(char **envp, char *header)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	printf("************ %s : ***************\n", header);
 	while (envp[i])
 	{
@@ -21,33 +35,19 @@ void	envp_utils_test(t_mnshl *vars)
 	printf("HOMEBREW_CACHE : %s\n", envp_get_value_line(vars, "HOMEBREW_CACHE"));
 	printf("USER : %s\n", envp_get_value_line(vars, "USER"));
 	printf("USER : %s\n", envp_get_value_line(vars, "USER"));
-	envp_remove_line(vars, "ITER");
+	// envp_remove_line(vars, "ITER");
 	envp_remove_line(vars, "_");
-	envp_remove_line(vars, "USER");
-	envp_remove_line(vars, "HOMEBREW");
+	// envp_remove_line(vars, "USER");
+	// envp_remove_line(vars, "HOMEBREW");
+	envp_set_line(vars, "MYVAR", "MYVALUE");
+	envp_set_line(vars, "MYOTHERVAR", "MYOTHERVALUE");
+	envp_set_line(vars, "MYVAR", "MYOTHEROTHERVALUE");
 	print_envp(vars->envp, "AFTER DELETION");
 }
 
 /* _____________________________________________________________________________________________*/
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
-{
-	size_t	len_needle;
-
-	if (*needle == '\0')
-		return ((char *)haystack);
-	len_needle = ft_strlen(needle);
-	while (*haystack && len-- >= len_needle)
-	{
-		if (*haystack == *needle && !ft_strncmp(haystack, needle, len_needle))
-			return ((char *)haystack);
-		haystack++;
-	}
-	return (NULL);
-}
-
-
-int		is_name_in_line(char *envline, char *name)
+int	is_name_in_line(char *envline, char *name)
 {
 	int	len;
 
@@ -59,7 +59,7 @@ int		is_name_in_line(char *envline, char *name)
 	return (0);
 }
 
-int		is_name_in_envp(char **envp, char *name)
+int	is_name_in_envp(char **envp, char *name)
 {
 	int	i;
 
@@ -75,11 +75,10 @@ int		is_name_in_envp(char **envp, char *name)
 
 char	*build_envp_line(char *name, char *value)
 {
-	char *line;
+	char	*line;
 
 	line = ft_strjoin(name, "=");
 	line = ft_strjoin(line, value);
-
 	return (line);
 }
 
@@ -95,33 +94,31 @@ char	*build_envp_line(char *name, char *value)
  *		-- NOTHING --
  */
 // TODO check is case sensitive
-void envp_remove_line(t_mnshl *vars, char *name)
+void	envp_remove_line(t_mnshl *vars, char *name)
 {
-	int i;
-	int j;
-	char **n_envp;
-	
+	int		i_old;
+	int		i_new;
+	char	**n_envp;
+
 	if (is_name_in_envp(vars->envp, name) >= 0)
 	{
-		n_envp = malloc(sizeof(char *) * (ft_strtablen(vars->envp) - 1));
+		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(vars->envp)));
 		if (!n_envp)
 			return ;
-		i = 0;
-		j = 0;
-		while (vars->envp[i])
+		i_old = 0;
+		i_new = 0;
+		while (vars->envp[i_old])
 		{
-			if (!is_name_in_line(vars->envp[i], name))
-			{
-				n_envp[j] = vars->envp[i];
-				i++;
-				j++;
-			}
+			if (!is_name_in_line(vars->envp[i_old], name))
+				n_envp[i_new++] = vars->envp[i_old];
 			else
 			{
-				i++;
+				free(vars->envp[i_old]);
+				vars->envp[i_old] = NULL;
 			}
+			i_old++;
 		}
-		ft_freetabstr(&vars->envp);
+		free(vars->envp);
 		vars->envp = n_envp;
 	}
 }
@@ -137,11 +134,11 @@ void envp_remove_line(t_mnshl *vars, char *name)
  *		-- NOTHING --
  */
 // TODO check is case sensitive
-void envp_set_line(t_mnshl *vars, char *name, char *value)
+void	envp_set_line(t_mnshl *vars, char *name, char *value)
 {
 	int		i;
 	char	*n_line;
-	char 	**n_envp;
+	char	**n_envp;
 
 	n_line = build_envp_line(name, value);
 	i = is_name_in_envp(vars->envp, name);
@@ -153,17 +150,14 @@ void envp_set_line(t_mnshl *vars, char *name, char *value)
 	if (i < 0)
 	{
 		i = 0;
-		n_envp = malloc(sizeof(char *) * (ft_strtablen(vars->envp) + 2));
+		n_envp = malloc(sizeof(char *) * (ft_strtablen(vars->envp) + 1));
 		if (!n_envp)
 			return ;
 		while (vars->envp[i])
-		{
-			n_envp[i] = vars->envp[i];
-			i++;
-		}
+			n_envp[i] = vars->envp[i++];
 		n_envp[i++] = n_line;
-		n_envp[i] = "";
-		ft_freetabstr(vars->envp);
+		n_envp[i] = NULL;
+		free(vars->envp);
 		vars->envp = n_envp;
 	}
 }
@@ -181,22 +175,17 @@ void envp_set_line(t_mnshl *vars, char *name, char *value)
 // [REFLEXION : ON POURRAIT RETOURNER LE POINTEUR APRES LE =,
 // ce qui eviterais de devoir faire un free. Etant une string ca termine par '\0']
 // TODO check is case sensitive
-char *envp_get_value_line(t_mnshl *vars, char *name)
+char	*envp_get_value_line(t_mnshl *vars, char *name)
 {
-	char 	*ret;
-	int 	i;
+	char	*ret;
+	int		i;
 
 	ret = NULL;
-	i = 0;
-	while (vars->envp[i])
+	i = is_name_in_envp(vars->envp, name);
+	if (i >= 0)
 	{
-		if (is_name_in_line(vars->envp[i], name) >= 0)
-		{	
-			ret = &vars->envp[i][ft_strlen(name) + 1];
-			return (ret);
-		}
-		i++;
+		ret = &vars->envp[i][ft_strlen(name) + 1];
+		return (ret);
 	}
 	return (ret);
 }
-
