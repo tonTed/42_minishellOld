@@ -6,13 +6,15 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:17:15 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/23 19:01:13 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/23 19:26:51 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
+// TODO Comments
+// TODO Change name to tabstr
+// TODO Change to file general utils
 char	**tabstrdup(char **envp)
 {
 	char	**env;
@@ -34,6 +36,15 @@ void	init_vars(t_mnshl *vars, char **envp)
 	vars->cmds_tab = NULL;
 }
 
+/* Free all befor exit
+ *
+ *	Arguments : 
+ *		{TYPE} {ARG1 NAME} :
+ *		{TYPE} {ARG2 NAME} :
+ *
+ *	Returns : 
+ *		{TYPE} : 
+ */
 void	free_exit(t_mnshl *vars)
 {
 	WHOAMI

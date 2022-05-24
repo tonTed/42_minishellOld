@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/23 18:38:57 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/23 20:55:55 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ extern int g_status;
 */
 typedef struct s_heredoc
 {
-    int     index;
+    int     index_cmd; 			// index de cmd_block
     char    *eof;
 }   t_heredoc;
 
 typedef	char* str;
 
+// TODO comments
 typedef struct s_tab_cmds
 {
 	char		**cmd_split;	//cmd splitted with split_custom()
@@ -53,6 +54,7 @@ typedef struct s_tab_cmds
 	t_heredoc	*tab_heredoc;	//Index of command with heredoc
 }			t_cmd_block;
 
+// TODO comments
 typedef struct s_mnshl
 {
 	char 			**envp;

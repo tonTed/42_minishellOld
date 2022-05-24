@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:38:35 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/28 11:56:11 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/23 19:27:53 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,12 @@ void	ft_echo(char **args, char **env, int fd_out)
 		ft_putchar_fd('\n', fd_out);
 }
 
-int	main(int argc, char **argv)
-{
-	char **d_envp = NULL;
+// int	main(int argc, char **argv)
+// {
+// 	char **d_envp = NULL;
 
-	argc--;
-	argv++;
-	ft_echo(argv, d_envp, 1);
-	return (0);
-}
+// 	argc--;
+// 	argv++;
+// 	ft_echo(argv, d_envp, 1);
+// 	return (0);
+// }

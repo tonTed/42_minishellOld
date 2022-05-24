@@ -39,10 +39,10 @@ void envp_set_line(t_mnshl *vars, char *name, char *value)
  *		{char *}	{*name} : name of environnement variable to set.
  *
  *	Returns : 
- *		{char *} : value inside de environement variable.
+ *		{char *} : pointeur to the value start in vars.envp
  */
-// REFLEXION : ON POURRAIT RETOURNER LE POINTEUR APRES LE =,
-// ce qui eviterais de devoir faire un free. Etant une string ca termine par '\0'
+// [REFLEXION : ON POURRAIT RETOURNER LE POINTEUR APRES LE =,
+// ce qui eviterais de devoir faire un free. Etant une string ca termine par '\0']
 // TODO check is case sensitive
 char *envp_get_value_line(t_mnshl *vars, char *name)
 {

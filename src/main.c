@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:29:49 by tonted            #+#    #+#             */
-/*   Updated: 2022/04/27 21:20:46 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/23 19:26:49 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int g_status;
 
+// TODO comments
 int	minishell_loop(t_mnshl *vars)
 {
-	int		loop;
 	str		line;
 
-	loop = 1;
 	g_status = 0;
-	while (!g_status)
+	while (g_status != 1)
 	{	
+		g_status = 0;
 		line = prompt_DUMMY();
-		if (!g_status)
+		if (g_status == 0)
 			g_status = parse_line(vars, line);
-		if (!g_status)
+		if (g_status == 0)
 			g_status = execute(vars);
 		clean_up(vars, line);
 	}

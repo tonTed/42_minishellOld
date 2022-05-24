@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 19:00:35 by tonted            #+#    #+#              #
-#    Updated: 2022/04/28 08:06:50 by tonted           ###   ########.fr        #
+#    Updated: 2022/05/23 19:28:08 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ print	:
 
 # Test
 leak = 
-leak = -valgrind --leak-check=full
+# leak = -valgrind --leak-check=full
 
 test	: all
 	$(leak) ./minishell
