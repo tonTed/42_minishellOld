@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/24 08:42:08 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/25 09:06:46 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	init_vars(t_mnshl *vars, char **envp);
 void	free_exit(t_mnshl *vars);
 
 // envp_utils.c //
-void	envp_utils_test(t_mnshl *vars); // TEMPORARY TESTING FUNCTION
 void	envp_remove_line(t_mnshl *vars, char *name);
 char 	*envp_get_value_line(t_mnshl *vars, char *name);
 void	envp_set_line(t_mnshl *vars, char *name, char *value);
@@ -109,3 +108,5 @@ int	clean_up(t_mnshl *vars, char *line);
 */
 
 int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars);
+
+void	print_envp(char **envp, char *header);

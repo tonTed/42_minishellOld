@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:29:49 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/23 19:26:49 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/25 08:52:34 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int main(int argc, char **argv, char **envp)
 	t_mnshl	vars;
 	
 	init_vars(&vars, envp);
-	envp_utils_test(&vars);
 	minishell_loop(&vars);
 	free_exit(&vars);
 }

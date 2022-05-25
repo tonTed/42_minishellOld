@@ -36,25 +36,26 @@ bool	is_separator(char *ptr, char *flag)
  */
 int manage_flag(char flag, t_mnshl *vars, char *line, int i_begin, int i_end)
 {
-	if (flag == '<')
+//	if (flag == '<')
 		// prendre ce qu'il y avant si existant, et l'ajouter dans cmd_split
 		// set le flag 0x1
 		// aller jusqu'au prochain separateur puis set file_in, si il existe deja, free avant de le remplacer
 		// tester si le fichier est ouvrable avec `access()` if error return error
 		// reset flag
 		// !! voir si dans bash il ouvre plusieurs fichier
-		;
-	else if (flag == '<<')
+//		;
+//	else if (flag == '<<')
 		// fait un autre truc
-		;
-	else if (flag == '>')
+//		;
+//	else if (flag == '>')
 		// voir si le fichier est accessible, s'il existe pas le cree
 		// dup2(stdout vers ce fichier) en mode O_TRUNC
 		;
-	else if (flag == '>>')
+//	else if (flag == '>>')
 		// voir si le fichier est accessible, s'il existe pas le cree
 		// dup2(stdout vers ce fichier) O_APPEND
 		;
+    return (EXIT_SUCCESS);
 }
 
 /* 	
@@ -105,4 +106,5 @@ int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars)
 			manage_flag(flag, vars, line, i_begin_cur, i_end_cur);
 		i_end_cur++;
 	}
+	return (EXIT_SUCCESS);
 }

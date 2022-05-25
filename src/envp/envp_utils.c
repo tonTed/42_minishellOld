@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/24 16:26:34 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/25 08:40:32 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,6 @@ void	print_envp(char **envp, char *header)
 		i++;
 	}
 	printf("************ Line count (i) : %d ***************\n\n", i);
-}
-
-void	envp_utils_test(t_mnshl *vars)
-{
-	print_envp(vars->envp, "AT BEGINNING");
-	printf("_ : %s\n", envp_get_value_line(vars, "_"));
-	printf("ITER : %s\n", envp_get_value_line(vars, "ITER"));
-	printf("HOMEBREW : %s\n", envp_get_value_line(vars, "HOMEBREW"));
-	printf("HOMEBREW_CACHE : %s\n", envp_get_value_line(vars, "HOMEBREW_CACHE"));
-	printf("USER : %s\n", envp_get_value_line(vars, "USER"));
-	printf("USER : %s\n", envp_get_value_line(vars, "USER"));
-	// envp_remove_line(vars, "ITER");
-	envp_remove_line(vars, "_");
-	// envp_remove_line(vars, "USER");
-	// envp_remove_line(vars, "HOMEBREW");
-	envp_set_line(vars, "MYVAR", "MYVALUE");
-	envp_set_line(vars, "MYOTHERVAR", "MYOTHERVALUE");
-	envp_set_line(vars, "MYVAR", "MYOTHEROTHERVALUE");
-	print_envp(vars->envp, "AFTER DELETION");
 }
 
 /* _____________________________________________________________________________________________*/
@@ -154,7 +135,10 @@ void	envp_set_line(t_mnshl *vars, char *name, char *value)
 		if (!n_envp)
 			return ;
 		while (vars->envp[i])
-			n_envp[i] = vars->envp[i++];
+		{
+			n_envp[i] = vars->envp[i];
+			i++;
+		}
 		n_envp[i++] = n_line;
 		n_envp[i] = NULL;
 		free(vars->envp);
