@@ -6,14 +6,16 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:17:15 by jbernard          #+#    #+#             */
-/*   Updated: 2022/04/28 08:27:15 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/23 19:26:51 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-char	**copy_env(char **envp)
+// TODO Comments
+// TODO Change name to tabstr
+// TODO Change to file general utils
+char	**tabstrdup(char **envp)
 {
 	char	**env;
 	int		i;
@@ -30,10 +32,19 @@ void	init_vars(t_mnshl *vars, char **envp)
 {
 	WHOAMI
 	vars->last_errno = 0;
-	vars->envp = copy_env(envp);
+	vars->envp = tabstrdup(envp);
 	vars->cmds_tab = NULL;
 }
 
+/* Free all befor exit
+ *
+ *	Arguments : 
+ *		{TYPE} {ARG1 NAME} :
+ *		{TYPE} {ARG2 NAME} :
+ *
+ *	Returns : 
+ *		{TYPE} : 
+ */
 void	free_exit(t_mnshl *vars)
 {
 	WHOAMI

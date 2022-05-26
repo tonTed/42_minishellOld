@@ -6,7 +6,7 @@
 #    By: tonted <tonted@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/12 19:00:35 by tonted            #+#    #+#              #
-#    Updated: 2022/04/28 08:06:50 by tonted           ###   ########.fr        #
+#    Updated: 2022/05/25 09:00:23 by tonted           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,14 @@ OBJDIRS = $(foreach dir, $(DIRS), $(addprefix $(OBJDIR)/, $(dir)))
 # Create a list of *.c sources in DIRS
 SRCS = $(wildcard src/*.c)
 SRCS += $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
+
+# Unit Test
+SRCS_TEST =  $(wildcard test/*.c)
+SRCS_TEST += $(SRCS)
+SRCS_TEST := $(filter-out src/main.c, $(SRCS_TEST))
+
+# Define objects for all sources
+OBJS_TEST = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS_TEST))
 
 # Define objects for all sources
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))
@@ -63,6 +71,16 @@ fclean		: clean
 
 re			: fclean all
 
+test	: all
+	$(leak) ./minishell
+
+utest	: buildrepo $(OBJS_TEST)
+	@echo "Hello utest"
+	$(HIDE)$(MAKE) -C $(LIBFTDIR)
+	$(HIDE)$(CC) $(CFLAGS) $(OBJS_TEST) $(LIBS) -o utest
+	@printf $(MAGENTA)"[$@] unit test created\n"$(RESET)
+	./utest
+
 buildrepo	:
 	$(HIDE)$(call make-repo)
 
@@ -73,10 +91,8 @@ print	:
 
 # Test
 leak = 
-leak = -valgrind --leak-check=full
+# leak = -valgrind --leak-check=full
 
-test	: all
-	$(leak) ./minishell
 
 docker	:
 	docker build . -t 42:minishell
