@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/25 09:06:46 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/26 07:14:37 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ typedef struct s_heredoc
 typedef	char* str;
 
 // TODO comments
-typedef struct s_tab_cmds
+typedef struct s_cmd_block
 {
 	char		**cmd_split;	//cmd splitted with split_custom()
 	char		*cmd;           // Full block of command
 	char		*filein;
 	char		flag; 			//Bitwise flags (See *)
-	t_heredoc	*tab_heredoc;	//Index of command with heredoc
 }			t_cmd_block;
 
 // TODO comments
@@ -60,6 +59,9 @@ typedef struct s_mnshl
 	char 			**envp;
 	int				last_errno;
     t_cmd_block 	*cmds_tab;
+	uint32_t		cmds_count;
+	t_heredoc		*tab_heredoc;	//Index of command with heredoc
+	uint32_t		heredoc_count;
 }			t_mnshl;
 
 // prompt.c //
