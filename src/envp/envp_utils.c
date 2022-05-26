@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/25 08:40:32 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/26 10:20:18 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	envp_remove_line(t_mnshl *vars, char *name)
 	int		i_old;
 	int		i_new;
 	char	**n_envp;
-
 	if (is_name_in_envp(vars->envp, name) >= 0)
 	{
 		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(vars->envp)));
@@ -99,6 +98,7 @@ void	envp_remove_line(t_mnshl *vars, char *name)
 			}
 			i_old++;
 		}
+		n_envp[i_new] = NULL;
 		free(vars->envp);
 		vars->envp = n_envp;
 	}
@@ -120,7 +120,7 @@ void	envp_set_line(t_mnshl *vars, char *name, char *value)
 	int		i;
 	char	*n_line;
 	char	**n_envp;
-
+	
 	n_line = build_envp_line(name, value);
 	i = is_name_in_envp(vars->envp, name);
 	if (i >= 0)
@@ -131,7 +131,7 @@ void	envp_set_line(t_mnshl *vars, char *name, char *value)
 	if (i < 0)
 	{
 		i = 0;
-		n_envp = malloc(sizeof(char *) * (ft_strtablen(vars->envp) + 1));
+		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(vars->envp) + 2));
 		if (!n_envp)
 			return ;
 		while (vars->envp[i])
@@ -156,8 +156,6 @@ void	envp_set_line(t_mnshl *vars, char *name, char *value)
  *	Returns : 
  *		{char *} : pointeur to the value start in vars.envp
  */
-// [REFLEXION : ON POURRAIT RETOURNER LE POINTEUR APRES LE =,
-// ce qui eviterais de devoir faire un free. Etant une string ca termine par '\0']
 // TODO check is case sensitive
 char	*envp_get_value_line(t_mnshl *vars, char *name)
 {
