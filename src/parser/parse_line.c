@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/24 08:43:26 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/26 08:13:07 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,17 @@ int	find_next_quote(char *line, char flag)
  */
 bool	is_quote(char c, char *flag)
 {
-	return (true);
+	if (c == '\'')
+	{
+		// set flag
+		return (true);
+	}
+	if (c == '\"')
+	{
+		// set flag
+		return (true); 
+	}
+	return (false);
 }
 
 /* Check if the char is `|`.
