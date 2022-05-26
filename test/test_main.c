@@ -9,6 +9,7 @@ int main(int argc, char **argv, char **envp)
 	t_mnshl	vars;
 	
 	init_vars(&vars, envp);
+	// mock_data(&vars);
 
 	test_envp_utils(&vars);
 	

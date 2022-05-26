@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:29:49 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/26 07:28:30 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/26 08:00:14 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ int main(int argc, char **argv, char **envp)
 	t_mnshl	vars;
 	
 	init_vars(&vars, envp);
+	// put_t_mnshl(vars);
 
-	// printf(BRED "=> %u\n" RESET, vars.cmds_count);
-
-	put_t_mnshl(vars);
-
-	// minishell_loop(&vars);
+	minishell_loop(&vars);
 	free_exit(&vars);
 }
