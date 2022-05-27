@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:17:15 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/23 19:26:51 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/26 07:22:00 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	init_vars(t_mnshl *vars, char **envp)
 	vars->last_errno = 0;
 	vars->envp = tabstrdup(envp);
 	vars->cmds_tab = NULL;
+	vars->cmds_count = 0;
+	vars->heredoc_count = 0;
 }
 
 /* Free all befor exit

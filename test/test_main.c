@@ -9,8 +9,10 @@ int main(int argc, char **argv, char **envp)
 	t_mnshl	vars;
 	
 	init_vars(&vars, envp);
+	// mock_data(&vars);
+	test_is_quote();
 
-	test_envp_utils(&vars);
+	// test_envp_utils(&vars);
 	
 	return 0;
 }
