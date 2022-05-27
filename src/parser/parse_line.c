@@ -6,11 +6,12 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/26 08:13:07 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/27 07:15:07 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "bit_handling.h"
 
 /* Search the next quote, checking the type of quote in flag.
  *
@@ -39,12 +40,12 @@ bool	is_quote(char c, char *flag)
 {
 	if (c == '\'')
 	{
-		// set flag
+		add_flag(flag, F_SQUOTE);
 		return (true);
 	}
 	if (c == '\"')
 	{
-		// set flag
+		add_flag(flag, F_DQUOTE);
 		return (true); 
 	}
 	return (false);
