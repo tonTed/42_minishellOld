@@ -42,6 +42,7 @@ void	add_flag(unsigned char *flag, unsigned char flag_to_add)
 // flag 0001 0010, to remove ~0000 0010 = 1111 1101 / 0001 0010 & 1111 1101 = 0001 1101
 void	remove_flag(unsigned char *flag, unsigned char flag_to_remove)
 {
+<<<<<<< HEAD
 	*flag &= ~flag_to_remove;
 }
 
@@ -49,3 +50,32 @@ bool	is_flag_set(unsigned char flag, unsigned char flag_to_check)
 {
 	return (flag & flag_to_check);
 }
+=======
+	// flag 0001 0010, to remove ~0000 0010 = 1111 1101 / 0001 0010 & 1111 1101 = 0001 1101
+	*flag &= ~flag_to_set;
+}
+
+bool	is_flag_set(unsigned char flag, unsigned char flag_to_check)
+{
+	return (flag & flag_to_check);
+}
+
+
+	// int main(int argc, char const *argv[])
+	// {
+	// 	unsigned char	flag;
+
+	// 	set_flag(&flag, 0x1);
+	// 	put_bin(flag);
+	// 	set_flag(&flag, 0x8);
+	// 	put_bin(flag);
+	// 	add_flag(&flag, 0x1);
+	// 	put_bin(flag);
+	// 	add_flag(&flag, 0x1);
+	// 	put_bin(flag);
+	// 	remove_flag(&flag, 0x1);
+	// 	put_bin(flag);
+	// 	return 0;
+	// }
+
+>>>>>>> 80b990a2220e4236720759bb23f1fd496f7f9ef9
