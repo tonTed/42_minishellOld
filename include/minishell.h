@@ -6,9 +6,12 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/26 07:14:37 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/28 07:11:21 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 # include <stdio.h>
 # include <signal.h>
@@ -112,3 +115,5 @@ int	clean_up(t_mnshl *vars, char *line);
 int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars);
 
 void	print_envp(char **envp, char *header);
+
+#endif
