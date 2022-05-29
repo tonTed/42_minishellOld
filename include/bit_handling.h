@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 07:10:30 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/27 07:13:51 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/29 07:56:58 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 void	put_bin(unsigned char value);
 void	set_flag(unsigned char *flag, unsigned char flag_to_set);
-void	add_flag(unsigned char *flag, unsigned char flag_to_set);
-void	remove_flag(unsigned char *flag, unsigned char flag_to_set);
+void	add_flag(unsigned char *flag, unsigned char flag_to_add);
+void	remove_flag(unsigned char *flag, unsigned char flag_to_remove);
+bool	is_flag_set(unsigned char flag, unsigned char flag_to_check);

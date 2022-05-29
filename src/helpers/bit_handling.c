@@ -1,23 +1,6 @@
 #include "../../libraries/libft/include/colors.h"
 #include <stdio.h>
-
-void	put_bin(unsigned char value)
-{
-	int i;
-	int	bit;
-
-	i = 7;
-	while (i >= 0)
-	{
-		bit = (value & (1 << i)) >> i;
-		if (bit)
-			printf(RED "%d" RESET, bit);
-		else
-			printf(GRN "%d" RESET, bit);
-		i--;
-	}
-	printf("\n");
-}
+#include <stdbool.h>
 
 /* Explication manipulation des bits avec exemples
 *
@@ -51,33 +34,18 @@ void	set_flag(unsigned char *flag, unsigned char flag_to_set)
 	*flag = flag_to_set;
 }
 
-void	add_flag(unsigned char *flag, unsigned char flag_to_set)
+void	add_flag(unsigned char *flag, unsigned char flag_to_add)
 {
-	*flag |= flag_to_set;
+	*flag |= flag_to_add;
 }
 
-void	remove_flag(unsigned char *flag, unsigned char flag_to_set)
+// flag 0001 0010, to remove ~0000 0010 = 1111 1101 / 0001 0010 & 1111 1101 = 0001 1101
+void	remove_flag(unsigned char *flag, unsigned char flag_to_remove)
 {
-	if (!(*flag & flag_to_set))
-		return;
-	*flag -= flag_to_set;
+	*flag &= ~flag_to_remove;
 }
 
-/*
-	int main(int argc, char const *argv[])
-	{
-		unsigned char	flag;
-
-		set_flag(&flag, 0x1);
-		put_bin(flag);
-		set_flag(&flag, 0x8);
-		put_bin(flag);
-		add_flag(&flag, 0x1);
-		put_bin(flag);
-		add_flag(&flag, 0x1);
-		put_bin(flag);
-		remove_flag(&flag, 0x1);
-		put_bin(flag);
-		return 0;
-	}
-*/
+bool	is_flag_set(unsigned char flag, unsigned char flag_to_check)
+{
+	return (flag & flag_to_check);
+}
