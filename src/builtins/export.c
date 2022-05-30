@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:14:45 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 15:48:51 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:49:55 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,18 @@ size_t	ft_strtablen(char **tab)
 	return (len);
 }
 
-char	**tabstrdup(char **envp)
-{
-	char	**env;
-	int		i;
+char	**tabstrdup(char **envp);
+// {
+// 	char	**env;
+// 	int		i;
 
-	env = (char **)malloc(sizeof(char *) * (ft_strtablen(envp) + 1));
-	i = 0;
-	while (*envp)
-		env[i++] = ft_strdup(*envp++);
-	env[i] = NULL;
-	return (env);
-}
+// 	env = (char **)malloc(sizeof(char *) * (ft_strtablen(envp) + 1));
+// 	i = 0;
+// 	while (*envp)
+// 		env[i++] = ft_strdup(*envp++);
+// 	env[i] = NULL;
+// 	return (env);
+// }
 
 
 
@@ -130,19 +130,19 @@ char	**get_alpha_envp(char **envp)
 	return envp;
 }
 
-void	print_envp(char **envp, char *header)
-{
-	int	i;
+void	print_envp(char **envp, char *header);
+// {
+// 	int	i;
 
-	i = 0;
-	printf("************ %s : ***************\n", header);
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	}
-	printf("************ Line count (i) : %d ***************\n\n", i);
-}
+// 	i = 0;
+// 	printf("************ %s : ***************\n", header);
+// 	while (envp[i])
+// 	{
+// 		printf("%s\n", envp[i]);
+// 		i++;
+// 	}
+// 	printf("************ Line count (i) : %d ***************\n\n", i);
+// }
 
 void	ft_export(char **args, char **envp, int fd_out)
 {
@@ -153,8 +153,8 @@ void	ft_export(char **args, char **envp, int fd_out)
 	print_envp(new_envp, "BEGINNING");
 }
 
-int main(int argc, char **argv, char **envp)
-{
-	ft_export(argv, envp, 1);
-	return (0);
-}
+// int main(int argc, char **argv, char **envp)
+// {
+// 	ft_export(argv, envp, 1);
+// 	return (0);
+// }
