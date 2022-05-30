@@ -21,6 +21,7 @@ void	put_bin(unsigned char value);
 bool	assert_true(bool boolean);
 bool	assert_false(bool boolean);
 bool	assert_equal_hexa_u8bit(uint8_t number, uint8_t expected);
+bool	assert_equal_int(int number, int expected);
 
 // utils
 void	it(char *s, uint16_t *count);

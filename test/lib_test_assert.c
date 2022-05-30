@@ -30,3 +30,13 @@ bool	assert_equal_hexa_u8bit(uint8_t number, uint8_t expected)
 	}
 	return (true);
 }
+
+bool	assert_equal_int(int number, int expected)
+{
+	if (number != expected)
+	{
+		printf(BRED "  X   └─> expect: %d, returns: %d\n"RESET, expected, number);
+		return (false);
+	}
+	return (true);
+}
