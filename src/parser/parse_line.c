@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/27 07:15:07 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/30 12:01:08 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,22 @@
  *	Returns : 
  *		{int} : the index of the quote closing. Otherwise -1 if not exists.
  */
-int	find_next_quote(char *line, char flag)
+int	find_next_quote(char *line, unsigned char *flag, ssize_t i)
 {
+	char	q;
 
+	if (flag = 0x1)
+		q = '\'';
+	else if (flag = 0x2)
+		q = '\"';
+	else
+		return (-1);
+	while (line[i])
+	{
+		if (line[i] == q)
+			return (i);
+		i++;
+	}
 }
 
 /* Check if the char is `'` or `"`, if true set the rigth flag.
@@ -36,7 +49,7 @@ int	find_next_quote(char *line, char flag)
  *	Returns : 
  *		{TYPE} : true or false
  */
-bool	is_quote(char c, char *flag)
+bool	is_quote(char c, unsigned char *flag)
 {
 	if (c == '\'')
 	{
@@ -60,9 +73,14 @@ bool	is_quote(char c, char *flag)
  *	Returns : 
  *		{TYPE} : 
  */
-bool	is_operator(char *c, char *flag)
+bool	is_operator(char c, unsigned char *flag)
 {
-	return (true);
+	if (c == '|')
+	{
+		add_flag(flag, 0x4);
+		return (true);
+	}
+	return (false);
 }
 
 /*
@@ -122,7 +140,7 @@ bool	is_operator(char *c, char *flag)
 int	parse_line(t_mnshl *vars, char *line)
 {
 	WHOAMI
-	char 	flag;
+	unsigned char 	flag;
 	ssize_t	i_begin;
 	ssize_t	i_end;
 
@@ -131,10 +149,10 @@ int	parse_line(t_mnshl *vars, char *line)
 	while (line[i_end])
 	{
 		if (is_quote(line[i_end], &flag))
-			i_end = find_next_quote(line, flag);
+			i_end = find_next_quote(line, &flag, i_end);
 		if (i_end == -1)
 			return (EXIT_FAILURE);	// error command line, plus tard on executeras les premieres commandes si existantes
-		if (is_operator(&line[i_end], &flag))
+		if (is_operator(line[i_end], &flag))
 			i_begin = create_cmd_block(line, i_begin, i_end, vars);
 		i_end++;
 	}

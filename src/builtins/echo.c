@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:38:35 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/23 19:27:53 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/29 11:04:29 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 /*
 	# Options
@@ -35,52 +35,7 @@
 	 	gcc echo.c -o echo
 */
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	if (!n)
-		return (0);
-	while (--n && *s1 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return (*(unsigned char *) s1 - *(unsigned char *) s2);
-}
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	write(fd, s, ft_strlen(s));
-}
-
-// ----------------------------------------------------------------------- //
-
-size_t	ft_strarraylen(char **array)
-{
-	size_t	ret;
-
-	ret = 0;
-	while (array[ret])
-		ret++;
-	return (ret);
-}
 
 void	ft_echo(char **args, char **env, int fd_out)
 {
@@ -94,7 +49,7 @@ void	ft_echo(char **args, char **env, int fd_out)
 		nl = 0;
 		args++;
 	}
-	argc = ft_strarraylen(args);
+	argc = ft_strtablen(args);
 	i = 0;
 	while (i < argc)
 	{

@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/26 10:20:18 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:36:42 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*build_envp_line(char *name, char *value)
  *		-- NOTHING --
  */
 // TODO check is case sensitive
-void	envp_remove_line(t_mnshl *vars, char *name)
+void	envp_remove_line(char **envp, char *name)
 {
 	int		i_old;
 	int		i_new;
@@ -115,7 +115,7 @@ void	envp_remove_line(t_mnshl *vars, char *name)
  *		-- NOTHING --
  */
 // TODO check is case sensitive
-void	envp_set_line(t_mnshl *vars, char *name, char *value)
+void	envp_set_line(char **envp, char *name, char *value)
 {
 	int		i;
 	char	*n_line;
@@ -157,7 +157,7 @@ void	envp_set_line(t_mnshl *vars, char *name, char *value)
  *		{char *} : pointeur to the value start in vars.envp
  */
 // TODO check is case sensitive
-char	*envp_get_value_line(t_mnshl *vars, char *name)
+char	*envp_get_value_line(char **envp, char *name)
 {
 	char	*ret;
 	int		i;

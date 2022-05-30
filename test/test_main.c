@@ -13,6 +13,7 @@ int main(int argc, char **argv, char **envp)
 	init_vars(&vars, envp);
 
 	test_bit_handling(&count);
+	test_parser(&count);
 
 	put_final_recap(count);
 	return 0;
