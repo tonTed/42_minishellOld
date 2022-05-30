@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 12:01:08 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:44:24 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	find_next_quote(char *line, unsigned char *flag, ssize_t i)
 {
 	char	q;
 
-	if (flag = 0x1)
+	if (is_flag_set(*flag, F_SQUOTE))
 		q = '\'';
-	else if (flag = 0x2)
+	else if (is_flag_set(*flag, F_DQUOTE))
 		q = '\"';
 	else
 		return (-1);
