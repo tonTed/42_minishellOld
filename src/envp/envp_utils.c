@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 13:36:42 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/30 18:38:23 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,27 @@ void	envp_remove_line(char **envp, char *name)
 	int		i_old;
 	int		i_new;
 	char	**n_envp;
-	if (is_name_in_envp(vars->envp, name) >= 0)
+	if (is_name_in_envp(envp, name) >= 0)
 	{
-		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(vars->envp)));
+		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(envp)));
 		if (!n_envp)
 			return ;
 		i_old = 0;
 		i_new = 0;
-		while (vars->envp[i_old])
+		while (envp[i_old])
 		{
-			if (!is_name_in_line(vars->envp[i_old], name))
-				n_envp[i_new++] = vars->envp[i_old];
+			if (!is_name_in_line(envp[i_old], name))
+				n_envp[i_new++] = envp[i_old];
 			else
 			{
-				free(vars->envp[i_old]);
-				vars->envp[i_old] = NULL;
+				free(envp[i_old]);
+				envp[i_old] = NULL;
 			}
 			i_old++;
 		}
 		n_envp[i_new] = NULL;
-		free(vars->envp);
-		vars->envp = n_envp;
+		free(envp);
+		envp = n_envp;
 	}
 }
 
@@ -122,27 +122,27 @@ void	envp_set_line(char **envp, char *name, char *value)
 	char	**n_envp;
 	
 	n_line = build_envp_line(name, value);
-	i = is_name_in_envp(vars->envp, name);
+	i = is_name_in_envp(envp, name);
 	if (i >= 0)
 	{
-		free(vars->envp[i]);
-		vars->envp[i] = n_line;
+		free(envp[i]);
+		envp[i] = n_line;
 	}
 	if (i < 0)
 	{
 		i = 0;
-		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(vars->envp) + 2));
+		n_envp = (char **)malloc(sizeof(char *) * (ft_strtablen(envp) + 2));
 		if (!n_envp)
 			return ;
-		while (vars->envp[i])
+		while (envp[i])
 		{
-			n_envp[i] = vars->envp[i];
+			n_envp[i] = envp[i];
 			i++;
 		}
 		n_envp[i++] = n_line;
 		n_envp[i] = NULL;
-		free(vars->envp);
-		vars->envp = n_envp;
+		free(envp);
+		envp = n_envp;
 	}
 }
 
@@ -163,10 +163,10 @@ char	*envp_get_value_line(char **envp, char *name)
 	int		i;
 
 	ret = NULL;
-	i = is_name_in_envp(vars->envp, name);
+	i = is_name_in_envp(envp, name);
 	if (i >= 0)
 	{
-		ret = &vars->envp[i][ft_strlen(name) + 1];
+		ret = &envp[i][ft_strlen(name) + 1];
 		return (ret);
 	}
 	return (ret);
