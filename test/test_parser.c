@@ -63,6 +63,7 @@ void	test_is_operator(t_test *_count)
 		_count->passed += assert_equal_hexa_u8bit(flag, 0x0);
 }
 
+/*
 int	find_next_quote(char *line, unsigned char *flag, ssize_t i);
 void	test_find_next_quote(char *line, unsigned char *flag, ssize_t i);
 {
@@ -70,6 +71,7 @@ void	test_find_next_quote(char *line, unsigned char *flag, ssize_t i);
 
 	unsigned char	flag = 0;
 }
+*/
 
 void	test_parser(t_test *count)
 {
