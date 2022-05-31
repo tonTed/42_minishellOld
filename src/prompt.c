@@ -57,7 +57,7 @@
 // http://bashcookbook.com/bashinfo/source/readline-7.0/doc/readline.pdf
 void	ctrl_c_sig()
 {
-	WHOAMI
+	//WHOAMI
 	ft_putstr_fd("\n", 1);
 	rl_on_new_line(); //Tell the update functions that we have moved onto a new (empty) line, usually after outputting a newline. 
 	rl_replace_line("", 0); // Vide le buffer de ce qui était écrit dans la ligne d'avant
