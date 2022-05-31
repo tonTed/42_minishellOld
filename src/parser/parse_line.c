@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 18:44:24 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/30 19:52:12 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	find_next_quote(char *line, unsigned char *flag, ssize_t i)
 			return (i);
 		i++;
 	}
+	return (-1);
 }
 
 /* Check if the char is `'` or `"`, if true set the rigth flag.
@@ -156,6 +157,5 @@ int	parse_line(t_mnshl *vars, char *line)
 			i_begin = create_cmd_block(line, i_begin, i_end, vars);
 		i_end++;
 	}
-
 	return (EXIT_SUCCESS);
 }

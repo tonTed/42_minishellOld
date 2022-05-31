@@ -63,6 +63,41 @@ void	test_is_operator(t_test *_count)
 		_count->passed += assert_equal_hexa_u8bit(flag, 0x0);
 }
 
+
+int		find_next_quote(char *line, unsigned char *flag, ssize_t i);
+void	test_find_next_quote(t_test *_count)
+{
+	T_SECOND_LVL;
+
+	char			line[20];
+	unsigned char	flag = 0x0;
+	int				ret;
+
+	it("checking next `'` should be return 5", &_count->total);
+		strcpy(line, "'hola'");
+		flag = 0x1;
+		ret = find_next_quote(line, &flag, 2);
+		_count->passed += assert_equal_int(ret, 5);
+
+	it("checking next `\"` should be return 3", &_count->total);
+		strcpy(line, "\"ho\"la");
+		flag = 0x2;
+		ret = find_next_quote(line, &flag, 1);
+		_count->passed += assert_equal_int(ret, 3);
+
+	it("is not quote, should be return -1", &_count->total);
+		strcpy(line, "\"ho\"la");
+		flag = 0x4;
+		ret = find_next_quote(line, &flag, 1);
+		_count->passed += assert_equal_int(ret, -1);
+
+	it("quote not found, shoulb be return -1", &_count->total);
+		strcpy(line, "\"hola");
+		flag = 0x1;
+		ret = find_next_quote(line, &flag, 1);
+		_count->passed += assert_equal_int(ret, -1);
+
+}
 /*
 int	find_next_quote(char *line, unsigned char *flag, ssize_t i);
 void	test_find_next_quote(char *line, unsigned char *flag, ssize_t i);
@@ -81,6 +116,7 @@ void	test_parser(t_test *count)
 
 	test_is_quote(&_count);
 	test_is_operator(&_count);
+	test_find_next_quote(&_count);
 
 	put_recap(count, _count);
 }
