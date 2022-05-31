@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/31 13:47:05 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:11:53 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*prompt_DUMMY();
 int	parse_line(t_mnshl *vars, char *line);
 
 // init_vars.c //
+char	**tabstrdup(char **envp);
 void	init_vars(t_mnshl *vars, char **envp);
 void	free_exit(t_mnshl *vars);
 
@@ -89,6 +90,9 @@ void	ft_unset(char **args, char **env, int fd_out);
 void	envp_remove_line(char **envp, char *name);
 char	*envp_get_value_line(char **envp, char *name);
 void	envp_set_line(char **envp, char *name, char *value);
+int	is_name_in_envp(char **envp, char *name);
+char	*get_value(char *env_line);
+char	*get_name(char *env_line);
 
 // heredoc.c //
 int heredoc(t_mnshl *vars);
