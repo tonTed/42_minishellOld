@@ -1,27 +1,43 @@
 #include "minishell.h"
+#include "bit_handling.h"
 
 /* Check is the current char is a separator and set the flag
  *
  *	Arguments : 
  *		{TYPE} {ARG1 NAME} :
- *		{TYPE} {ARG2 NAME} :
+ *		unsigne char* {flag} :
+ *			- 0x1 -> `<`
+ *			- 0x2 -> `<<`
+ *			- 0x4 -> `>`
+ *			- 0x8 -> `>>`
  *
  *	Returns : 
  *		{bool} : true if is a separator, false otherwise
  */
-bool	is_separator(char *ptr, char *flag)
+bool	is_separator(char *ptr, unsigned char *flag)
 {
 	if (*ptr == '<')
 	{
-		//check if ptr + 1 '<'
-		//set flag
+		if (*(ptr + 1) == '<')
+		{
+			add_flag(flag, F_DSMALLER);
+			return (true);
+		}
+		add_flag(flag, F_SSMALLER);
+		return (true);
+	}
+	if (*ptr == '>')
+	{
+		if (*(ptr + 1) == '>')
+		{
+			add_flag(flag, F_DGREATER);
+			return (true);
+		}
+		add_flag(flag, F_SGREATER);
 		return (true);
 	}
 	if (*ptr == ' ')
-	{
-		//
 		return (true);
-	}
 	return (false);
 }
 
@@ -90,21 +106,22 @@ This function
 // TODO check if is the end of the line return -1?
 // TODO look append_cmd in setup_cmds.c file
 // cmd < file1 |
-int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars)
+int create_cmd_block(char *line, size_t len, t_mnshl *vars)
 {
-	ssize_t	i_begin_cur;
-	ssize_t	i_end_cur;
-	char	flag;
+	size_t			i;
+	size_t			i_begin;
+	unsigned char	flag;
 
-	i_begin_cur = i_begin;
-	i_end_cur = i_begin;
-	while (i_end >= i_end_cur)
+	i = 0;
+	i_begin = 0;
+	while (i < len)
 	{
-		if (is_separator(&line[i_end_cur], &flag))
+		if (is_separator(&line[i], &flag))
+			;
 			//ce qu'il y a avant il faut le mettre quelque parts
-		if (flag)
-			manage_flag(flag, vars, line, i_begin_cur, i_end_cur);
-		i_end_cur++;
+		// if (flag)
+		// 	manage_flag(flag, vars, line, i_begin_cur, i_end_cur);
+		i++;
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/28 07:11:21 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/30 21:01:55 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	init_vars(t_mnshl *vars, char **envp);
 void	free_exit(t_mnshl *vars);
 
 // envp_utils.c //
-void	envp_remove_line(t_mnshl *vars, char *name);
-char 	*envp_get_value_line(t_mnshl *vars, char *name);
-void	envp_set_line(t_mnshl *vars, char *name, char *value);
+void	envp_remove_line(char **envp, char *name);
+char	*envp_get_value_line(char **envp, char *name);
+void	envp_set_line(char **envp, char *name, char *value);
 
 // heredoc.c //
 int heredoc(t_mnshl *vars);
@@ -112,7 +112,7 @@ int	clean_up(t_mnshl *vars, char *line);
 ---------
 */
 
-int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars);
+int create_cmd_block(char *line, size_t len, t_mnshl *vars);
 
 void	print_envp(char **envp, char *header);
 

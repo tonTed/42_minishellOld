@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 12:01:08 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/30 21:08:41 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,22 @@ int	find_next_quote(char *line, unsigned char *flag, ssize_t i)
 {
 	char	q;
 
-	if (flag = 0x1)
+	if (is_flag_set(*flag, F_SQUOTE))
 		q = '\'';
-	else if (flag = 0x2)
+	else if (is_flag_set(*flag, F_DQUOTE))
 		q = '\"';
 	else
 		return (-1);
 	while (line[i])
 	{
 		if (line[i] == q)
+		{
+			remove_flag(flag, F_DQUOTE | F_SQUOTE);
 			return (i);
+		}
 		i++;
 	}
+	return (-1);
 }
 
 /* Check if the char is `'` or `"`, if true set the rigth flag.
@@ -136,26 +140,29 @@ bool	is_operator(char c, unsigned char *flag)
 // cmd < filein | cmd args opt |  cmd "args $opts |  'cmd' args op" | cmd > fileout
 // cmd < filein | cmd args opt |  cmd args "opts |  < < <'cmd' args op | cmd > fileout
 
-
 int	parse_line(t_mnshl *vars, char *line)
 {
 	WHOAMI
 	unsigned char 	flag;
 	ssize_t	i_begin;
-	ssize_t	i_end;
+	ssize_t	i_cur;
+	size_t	len;
 
 	i_begin = 0;
-	i_end = 0;
-	while (line[i_end])
+	i_cur = 0;
+	while (line[i_cur])
 	{
-		if (is_quote(line[i_end], &flag))
-			i_end = find_next_quote(line, &flag, i_end);
-		if (i_end == -1)
+		if (is_quote(line[i_cur], &flag))
+			i_cur = find_next_quote(line, &flag, i_cur);
+		if (i_cur == -1)
 			return (EXIT_FAILURE);	// error command line, plus tard on executeras les premieres commandes si existantes
-		if (is_operator(line[i_end], &flag))
-			i_begin = create_cmd_block(line, i_begin, i_end, vars);
-		i_end++;
+		if (is_operator(line[i_cur], &flag))
+		{
+			len = i_cur - i_begin; // real len is i_cur - i_begin + 1, but we don't use the operator
+			create_cmd_block(&line[i_begin], len, vars);
+			i_begin = i_cur + 1;
+		}
+		i_cur++;
 	}
-
 	return (EXIT_SUCCESS);
 }

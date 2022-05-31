@@ -3,3 +3,4 @@
 
 void	test_bit_handling(t_test *count);
 void	test_parser(t_test *count);
+void	test_cmd_block(t_test *count);
