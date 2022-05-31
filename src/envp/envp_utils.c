@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/31 15:22:54 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:54:43 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_name(char *env_line)
 		if(env_line[i] == '=')
 			env_line[i] = '\0';
 	}
-	return (env_line[0]);
+	return (&env_line[0]);
 }
 
 char	*get_value(char *env_line)
@@ -73,7 +73,7 @@ char	*get_value(char *env_line)
 	}
 	if (!env_line[i + 1])
 		return ("");
-	return (env_line[i++]);
+	return (&env_line[i++]);
 }
 
 /* _____________________________________________________________________________________________*/
