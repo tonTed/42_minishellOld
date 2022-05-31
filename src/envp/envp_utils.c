@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 18:38:23 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/31 12:43:53 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	print_envp(char **envp, char *header)
-{
-	int	i;
-
-	i = 0;
-	printf("************ %s : ***************\n", header);
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	}
-	printf("************ Line count (i) : %d ***************\n\n", i);
-}
-
-/* _____________________________________________________________________________________________*/
 
 int	is_name_in_line(char *envline, char *name)
 {

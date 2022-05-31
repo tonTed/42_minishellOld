@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:14:45 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 18:49:55 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/31 13:48:18 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,51 +21,9 @@ Export :
 		"export x='Bonjour''Allo'123" : Var x will be 'BonjourAllo123'
 */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "minishell.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (dstsize != 0)
-	{
-		while (i < dstsize - 1 && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (ft_strlen(src));
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char		*ret;
-	const int	len = ft_strlen(s1);
-
-	ret = (char *)malloc((len + 1) * sizeof(char));
-	if (!ret)
-		return (NULL);
-	ft_strlcpy(ret, s1, len + 1);
-	return (ret);
-}
-
+// Cette fonction n'est pas dans libft
 int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && *s2 && *s1 == *s2)
@@ -75,36 +33,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (*(unsigned char *) s1 - *(unsigned char *) s2);
 }
-
-size_t	ft_strtablen(char **tab)
-{
-	size_t	len;
-
-	len = 0;
-	if (tab)
-	{
-		while (tab[len])
-			len++;
-	}
-	return (len);
-}
-
-char	**tabstrdup(char **envp);
-// {
-// 	char	**env;
-// 	int		i;
-
-// 	env = (char **)malloc(sizeof(char *) * (ft_strtablen(envp) + 1));
-// 	i = 0;
-// 	while (*envp)
-// 		env[i++] = ft_strdup(*envp++);
-// 	env[i] = NULL;
-// 	return (env);
-// }
-
-
-
-/* ______________________________________________________________________________________ */
 
 char	**get_alpha_envp(char **envp)
 {
@@ -130,27 +58,13 @@ char	**get_alpha_envp(char **envp)
 	return envp;
 }
 
-void	print_envp(char **envp, char *header);
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	printf("************ %s : ***************\n", header);
-// 	while (envp[i])
-// 	{
-// 		printf("%s\n", envp[i]);
-// 		i++;
-// 	}
-// 	printf("************ Line count (i) : %d ***************\n\n", i);
-// }
-
 void	ft_export(char **args, char **envp, int fd_out)
 {
 	(void)args;
 	char **new_envp;
 	
 	new_envp = get_alpha_envp(envp);
-	print_envp(new_envp, "BEGINNING");
+	put_envp(new_envp);
 }
 
 // int main(int argc, char **argv, char **envp)

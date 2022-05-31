@@ -18,6 +18,20 @@ void	put_t_cmd_block(t_cmd_block cmd_block)
 {
 }
 
+void	put_envp(char **envp)
+{
+	int	i;
+
+	i = 0;
+	printf("************ Envp beginning : ***************\n");
+	while (envp[i])
+	{
+		printf("%s\n", envp[i]);
+		i++;
+	}
+	printf("************ Line count (i) : %d ***************\n\n", i);
+}
+
 void	put_cmds_tab(t_cmd_block *cmds_tab, uint32_t count)
 {
 	int i;

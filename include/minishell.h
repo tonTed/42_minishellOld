@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/30 21:01:55 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/31 13:47:05 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_mnshl
 	uint32_t		heredoc_count;
 }			t_mnshl;
 
+/* ___________________________ FUNCTION PROTOTYPE ____________________________ */
+
 // prompt.c //
 char	*prompt_DUMMY();
 
@@ -77,6 +79,12 @@ int	parse_line(t_mnshl *vars, char *line);
 void	init_vars(t_mnshl *vars, char **envp);
 void	free_exit(t_mnshl *vars);
 
+// Builtins //
+void	ft_export(char **args, char **envp, int fd_out);
+void	ft_echo(char **args, char **env, int fd_out);
+void	ft_pwd(char **args, char **env, int fd_out);
+void	ft_unset(char **args, char **env, int fd_out);
+
 // envp_utils.c //
 void	envp_remove_line(char **envp, char *name);
 char	*envp_get_value_line(char **envp, char *name);
@@ -84,6 +92,9 @@ void	envp_set_line(char **envp, char *name, char *value);
 
 // heredoc.c //
 int heredoc(t_mnshl *vars);
+
+// put_utils.c //
+void	put_envp(char **envp);
 
 int	execute_all_blocks(t_mnshl *vars);
 int	execute(t_mnshl *vars);
@@ -113,7 +124,5 @@ int	clean_up(t_mnshl *vars, char *line);
 */
 
 int create_cmd_block(char *line, size_t len, t_mnshl *vars);
-
-void	print_envp(char **envp, char *header);
 
 #endif
