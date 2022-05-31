@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:14:45 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/31 15:22:44 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:47:15 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,13 @@ void	ft_export(char **args, char **envp, int fd_out)
 	i = 1;
 	if (argc > 1)
 	{
-		while (args[i])	
+		while (args[i])
+		{	
 			envp_set_line(envp, get_name(args[i]), get_value(args[i]));
+			i++;
+		}	
 	}
 	else
 		put_envp(new_envp);
 	ft_freetabstr(&new_envp);
 }
-
-// int main(int argc, char **argv, char **envp)
-// {
-// 	ft_export(argv, envp, 1);
-// 	return (0);
-// }
