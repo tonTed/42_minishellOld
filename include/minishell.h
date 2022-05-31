@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/30 18:39:58 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/30 21:01:55 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	clean_up(t_mnshl *vars, char *line);
 ---------
 */
 
-int create_cmd_block(char *line, int i_begin, int i_end, t_mnshl *vars);
+int create_cmd_block(char *line, size_t len, t_mnshl *vars);
 
 void	print_envp(char **envp, char *header);
 
