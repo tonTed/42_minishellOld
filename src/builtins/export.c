@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:14:45 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/31 13:48:18 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/05/31 15:22:44 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 char	**get_alpha_envp(char **envp)
 {
+	char 	**n_envp;
 	char	*temp;
 	int		i;
 	int		j;
 	
-	while (envp[i])
+	n_envp = tabstrdup(envp);
+	while (n_envp[i])
 	{
 		j = i + 1;
-		while (envp[j])
+		while (n_envp[j])
 		{
-			if (ft_strcmp(envp[i], envp[j]) > 0)
+			if (ft_strcmp(n_envp[i], n_envp[j]) > 0)
 			{
-				temp = ft_strdup(envp[i]);
-				envp[i] = ft_strdup(envp[j]);
-				envp[j] = ft_strdup(temp);
+				temp = ft_strdup(n_envp[i]);
+				n_envp[i] = ft_strdup(n_envp[j]);
+				n_envp[j] = ft_strdup(temp);
 			}
 			j++;
 		}
@@ -60,11 +62,21 @@ char	**get_alpha_envp(char **envp)
 
 void	ft_export(char **args, char **envp, int fd_out)
 {
-	(void)args;
-	char **new_envp;
+	char	**new_envp;
+	int		argc;
+	int		i;
 	
 	new_envp = get_alpha_envp(envp);
-	put_envp(new_envp);
+	argc = ft_strtablen(args);
+	i = 1;
+	if (argc > 1)
+	{
+		while (args[i])	
+			envp_set_line(envp, get_name(args[i]), get_value(args[i]));
+	}
+	else
+		put_envp(new_envp);
+	ft_freetabstr(&new_envp);
 }
 
 // int main(int argc, char **argv, char **envp)
