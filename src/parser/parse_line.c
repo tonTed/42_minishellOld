@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 19:52:12 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/30 20:38:09 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	find_next_quote(char *line, unsigned char *flag, ssize_t i)
 	while (line[i])
 	{
 		if (line[i] == q)
+		{
+			remove_flag(flag, F_DQUOTE | F_SQUOTE);
 			return (i);
+		}
 		i++;
 	}
 	return (-1);

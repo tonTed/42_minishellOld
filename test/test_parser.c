@@ -97,6 +97,24 @@ void	test_find_next_quote(t_test *_count)
 		ret = find_next_quote(line, &flag, 1);
 		_count->passed += assert_equal_int(ret, -1);
 
+	it("after quote find flag is reset, flag shoulb be 0x0", &_count->total);
+		strcpy(line, "hola'");
+		flag = 0x1;
+		ret = find_next_quote(line, &flag, 1);
+		_count->passed += assert_equal_hexa_u8bit(flag, 0x0);
+
+	it("after quote find flag is reset, flag shoulb be 0x0", &_count->total);
+		strcpy(line, "hola'");
+		flag = 0x3;
+		ret = find_next_quote(line, &flag, 1);
+		_count->passed += assert_equal_hexa_u8bit(flag, 0x0);
+
+	it("after quote find flag is reset, flag shoulb be 0x4", &_count->total);
+		strcpy(line, "hola'");
+		flag = 0x7;
+		ret = find_next_quote(line, &flag, 1);
+		_count->passed += assert_equal_hexa_u8bit(flag, 0x4);
+
 }
 /*
 int	find_next_quote(char *line, unsigned char *flag, ssize_t i);
