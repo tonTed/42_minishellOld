@@ -27,6 +27,7 @@ bool	assert_equal_int(int number, int expected);
 void	it(char *s, uint16_t *count);
 bool	put_expected(char *expected, char *returns);
 void	put_bin(unsigned char value);
+void	put_envp(char **envp);
 void	put_recap(t_test *count, t_test _count);
 void	set_count(t_test *count);
 void	put_final_recap(t_test _count);

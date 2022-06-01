@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   envp_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 18:38:23 by tonted           ###   ########.fr       */
+/*   Updated: 2022/05/31 15:54:43 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	print_envp(char **envp, char *header)
-{
-	int	i;
-
-	i = 0;
-	printf("************ %s : ***************\n", header);
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	}
-	printf("************ Line count (i) : %d ***************\n\n", i);
-}
-
-/* _____________________________________________________________________________________________*/
 
 int	is_name_in_line(char *envline, char *name)
 {
@@ -63,6 +47,35 @@ char	*build_envp_line(char *name, char *value)
 	return (line);
 }
 
+char	*get_name(char *env_line)
+{
+	int	i;
+
+	i = 0;
+	while (env_line[i])
+	{
+		if(env_line[i] == '=')
+			env_line[i] = '\0';
+	}
+	return (&env_line[0]);
+}
+
+char	*get_value(char *env_line)
+{
+	int		i;
+	int		len;
+
+	len = ft_strlen(env_line);
+	i = 0;
+	while (env_line[i] != '=')
+	{
+		i++;
+	}
+	if (!env_line[i + 1])
+		return ("");
+	return (&env_line[i++]);
+}
+
 /* _____________________________________________________________________________________________*/
 
 /* Remove line from vars.envp
@@ -71,7 +84,7 @@ char	*build_envp_line(char *name, char *value)
  *		{t_mnshl}	{*vars}	: pointer to main struct of the program
  *		{char}		{*name} : name of environnement variable to remove.
  *
- *	Returns : 
+ *	Returns : 	
  *		-- NOTHING --
  */
 // TODO check is case sensitive
@@ -123,6 +136,7 @@ void	envp_set_line(char **envp, char *name, char *value)
 	
 	n_line = build_envp_line(name, value);
 	i = is_name_in_envp(envp, name);
+	
 	if (i >= 0)
 	{
 		free(envp[i]);
