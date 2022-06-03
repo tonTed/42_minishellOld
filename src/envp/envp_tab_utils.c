@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envp_utils.c                                       :+:      :+:    :+:   */
+/*   envp_tab_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:23:27 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/31 15:54:43 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/06/03 06:14:39 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_name_in_line(char *envline, char *name)
+bool	is_name_in_line(char *envline, char *name)
 {
 	int	len;
 
 	len = ft_strlen(name);
 	if (!ft_strncmp(envline, name, len) && envline[len] == '=')
 	{
-		return (1);
+		return (true);
 	}
-	return (0);
+	return (false);
 }
 
 int	is_name_in_envp(char **envp, char *name)
@@ -36,44 +36,6 @@ int	is_name_in_envp(char **envp, char *name)
 		i++;
 	}
 	return (-1);
-}
-
-char	*build_envp_line(char *name, char *value)
-{
-	char	*line;
-
-	line = ft_strjoin(name, "=");
-	line = ft_strjoin(line, value);
-	return (line);
-}
-
-char	*get_name(char *env_line)
-{
-	int	i;
-
-	i = 0;
-	while (env_line[i])
-	{
-		if(env_line[i] == '=')
-			env_line[i] = '\0';
-	}
-	return (&env_line[0]);
-}
-
-char	*get_value(char *env_line)
-{
-	int		i;
-	int		len;
-
-	len = ft_strlen(env_line);
-	i = 0;
-	while (env_line[i] != '=')
-	{
-		i++;
-	}
-	if (!env_line[i + 1])
-		return ("");
-	return (&env_line[i++]);
 }
 
 /* _____________________________________________________________________________________________*/

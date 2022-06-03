@@ -16,6 +16,7 @@ int main(int argc, char **argv, char **envp)
 	test_parser(&count);
 	test_cmd_block(&count);
 	test_envp_utils(&count);
+	test_envp_line_utils(&count);
 
 	put_final_recap(count);
 	return 0;

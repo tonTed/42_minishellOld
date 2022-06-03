@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/31 15:11:53 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/06/03 07:29:36 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define DQ '\"'
 # define Q '\''
 # define PIPE '|'
-
 
 /* TODO explain each status
 ** 0: all is good!
@@ -46,6 +45,11 @@ typedef struct s_heredoc
 }   t_heredoc;
 
 typedef	char* str;
+
+typedef struct s_env{
+	char	*name;
+	char	*value;
+}			t_env;
 
 // TODO comments
 typedef struct s_cmd_block
@@ -86,13 +90,17 @@ void	ft_echo(char **args, char **env, int fd_out);
 void	ft_pwd(char **args, char **env, int fd_out);
 void	ft_unset(char **args, char **env, int fd_out);
 
-// envp_utils.c //
+// envp_tab_utils.c //
 void	envp_remove_line(char **envp, char *name);
 char	*envp_get_value_line(char **envp, char *name);
 void	envp_set_line(char **envp, char *name, char *value);
-int	is_name_in_envp(char **envp, char *name);
+int		is_name_in_envp(char **envp, char *name);
+
+// envp_line_utils.c //
 char	*get_value(char *env_line);
 char	*get_name(char *env_line);
+char	*build_envp_line(char *name, char *value);
+bool	line_has_value(char	*line);
 
 // heredoc.c //
 int heredoc(t_mnshl *vars);

@@ -6,7 +6,7 @@
 /*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 11:14:45 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/31 15:47:15 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/06/03 07:23:25 by jbernard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,28 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 char	**get_alpha_envp(char **envp)
 {
-	char 	**n_envp;
 	char	*temp;
 	int		i;
 	int		j;
 	
-	n_envp = tabstrdup(envp);
-	while (n_envp[i])
+	while (envp[i])
 	{
 		j = i + 1;
-		while (n_envp[j])
+		while (envp[j])
 		{
-			if (ft_strcmp(n_envp[i], n_envp[j]) > 0)
+			if (ft_strcmp(envp[i], envp[j]) > 0)
 			{
-				temp = ft_strdup(n_envp[i]);
-				n_envp[i] = ft_strdup(n_envp[j]);
-				n_envp[j] = ft_strdup(temp);
+				temp = ft_strdup(envp[i]);
+				free(envp[i]);
+				envp[i] = ft_strdup(envp[j]);
+				free(envp[j]);
+				envp[j] = ft_strdup(temp);
+				free(temp);
 			}
 			j++;
 		}
 		i++;
 	}
-	return envp;
 }
 
 void	ft_export(char **args, char **envp, int fd_out)
@@ -65,7 +65,7 @@ void	ft_export(char **args, char **envp, int fd_out)
 	char	**new_envp;
 	int		argc;
 	int		i;
-	
+	// Tableau int indexation envp in alpha order
 	new_envp = get_alpha_envp(envp);
 	argc = ft_strtablen(args);
 	i = 1;
@@ -73,7 +73,8 @@ void	ft_export(char **args, char **envp, int fd_out)
 	{
 		while (args[i])
 		{	
-			envp_set_line(envp, get_name(args[i]), get_value(args[i]));
+			if (line_has_value(args[i]))
+				envp_set_line(envp, get_name(args[i]), get_value(args[i]));
 			i++;
 		}	
 	}
