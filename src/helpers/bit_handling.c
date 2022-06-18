@@ -31,21 +31,25 @@
 
 void	set_flag(unsigned char *flag, unsigned char flag_to_set)
 {
-	*flag = flag_to_set;
+	if (flag)
+		*flag = flag_to_set;
 }
 
 void	add_flag(unsigned char *flag, unsigned char flag_to_add)
 {
-	*flag |= flag_to_add;
+	if (flag)
+		*flag |= flag_to_add;
 }
 
 // flag 0001 0010, to remove ~0000 0010 = 1111 1101 / 0001 0010 & 1111 1101 = 0001 1101
 void	remove_flag(unsigned char *flag, unsigned char flag_to_remove)
 {
-	*flag &= ~flag_to_remove;
+	if (flag)
+		*flag &= ~flag_to_remove;
 }
 
 bool	is_flag_set(unsigned char flag, unsigned char flag_to_check)
 {
+	
 	return (flag & flag_to_check);
 }

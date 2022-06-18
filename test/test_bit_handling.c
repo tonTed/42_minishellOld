@@ -18,6 +18,10 @@ void	test_set_flag(t_test *_count)
 	it("setting flag to 0x32, flag shoulb be equal to 0x32", &_count->total);
 		set_flag(&flag, 0x32);
 		_count->passed += assert_equal_hexa_u8bit(flag, 0x32);
+	
+	it("sending flag NULL, shoulb be not segfault", &_count->total);
+		set_flag(NULL, 0x0);
+		_count->passed += 1;
 }
 
 void	add_flag(unsigned char *flag, unsigned char flag_to_set);
@@ -40,6 +44,10 @@ void	test_add_flag(t_test *_count)
 		add_flag(&flag, 0x20);
 		_count->passed += assert_equal_hexa_u8bit(flag, 0x25);
 
+	it("sending flag NULL, shoulb be not segfault", &_count->total);
+		add_flag(NULL, 0x0);
+		_count->passed += 1;
+
 }
 
 void	remove_flag(unsigned char *flag, unsigned char flag_to_set);
@@ -61,6 +69,10 @@ void	test_remove_flag(t_test *_count)
 	it("removing flag to 0x1,flag shoulb be equal to 0x2E", &_count->total);
 		remove_flag(&flag, 0x1);
 		_count->passed += assert_equal_hexa_u8bit(flag, 0x2E);
+	
+	it("sending flag NULL, shoulb be not segfault", &_count->total);
+		remove_flag(NULL, 0x0);
+		_count->passed += 1;
 }
 
 bool	is_flag_set(unsigned char flag, unsigned char flag_to_check);
