@@ -12,7 +12,7 @@ int main(int argc, char **argv, char **envp)
 	t_mnshl	vars;
 	init_vars(&vars, envp);
 
-	// test_bit_handling(&count);
+	test_bit_handling(&count);
 	// test_parser(&count);
 	// test_cmd_block(&count);
 	// test_envp_utils(&count);
