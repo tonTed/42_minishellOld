@@ -1,5 +1,15 @@
 #include "lib_test_header.h"
 
+bool	assert_NULL(void *ptr)
+{
+	if (ptr)
+	{
+		printf(BRED "  X   └─> expect: NULL, returns: %p\n"RESET, ptr);
+		return (false);
+	}
+	return (true);
+}
+
 bool	assert_true(bool boolean)
 {
 	if (boolean != true)
