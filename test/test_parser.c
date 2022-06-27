@@ -49,9 +49,9 @@ void	test_is_operator(t_test *_count)
 	it("Checking if '|' is an operator. function should return true", &_count->total);
 		_count->passed += assert_true(is_operator('|', &flag));
 
-	it("Checking if '|' is a quote or dbquote, flag should be 0x4.", &_count->total);
+	it("Checking if '|' is a quote or dbquote, flag should be 0x40.", &_count->total);
 		is_operator('|', &flag);
-		_count->passed += assert_equal_hexa_u8bit(flag, 0x4);
+		_count->passed += assert_equal_hexa_u8bit(flag, 0x40);
 
 	flag = 0;
 
