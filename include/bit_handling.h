@@ -6,12 +6,17 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 07:10:30 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/31 07:15:02 by tonted           ###   ########.fr       */
+/*   Updated: 2022/06/17 00:36:13 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define F_SQUOTE 0x1
 #define F_DQUOTE 0x2
+
+#define F_SEPARATOR 0x8
+
+#define F_OR 0x40
+#define F_AND 0x80
 
 #define F_SSMALLER 0x1
 #define F_DSMALLER 0x2
