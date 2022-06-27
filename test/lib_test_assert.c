@@ -50,3 +50,14 @@ bool	assert_equal_int(int number, int expected)
 	}
 	return (true);
 }
+
+bool	assert_equal_ptr(void *ptr, void *expected)
+{
+	if (ptr != expected)
+	{
+		printf(BRED "  X   └─> expect: %p, returns: %p\n"RESET, expected, ptr);
+		return (false);
+	}
+	return (true);
+}
+
