@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/06/17 00:38:50 by tonted           ###   ########.fr       */
+/*   Updated: 2022/08/05 20:56:14 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int	parse_line(t_mnshl *vars, char *line)
 	i_begin = 0;
 	i_cur = 0;
 	vars->cmds_count = 0;
-	vars->cmds_tab[vars->cmds_count].amount_params = 0;
+	// vars->cmds_tab[vars->cmds_count].amount_params = 0;
 	while (line[i_cur])
 	{
 		if (is_quote(line[i_cur], &flag))
