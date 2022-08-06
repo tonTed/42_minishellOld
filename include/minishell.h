@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbernard <jbernard@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 10:37:36 by tonted            #+#    #+#             */
-/*   Updated: 2022/05/31 15:11:53 by jbernard         ###   ########.fr       */
+/*   Updated: 2022/06/17 00:56:37 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef	char* str;
 // TODO comments
 typedef struct s_cmd_block
 {
+	size_t		amount_params;
 	char		**cmd_split;	//cmd splitted with split_custom()
 	char		*cmd;           // Full block of command
 	char		*filein;
