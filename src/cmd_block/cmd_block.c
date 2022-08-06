@@ -74,6 +74,11 @@ int manage_flag(char flag, t_mnshl *vars, char *line, int i_begin, int i_end)
     return (EXIT_SUCCESS);
 }
 
+void	add_cmd(char *cmd, size_t len, t_cmd_block *cmd_block)
+{
+	
+}
+
 /* 	
 Receives : 	t_mnshl vars;
 			WITH char *cmd filled with:
@@ -105,7 +110,9 @@ This function
  */
 // TODO check if is the end of the line return -1?
 // TODO look append_cmd in setup_cmds.c file
-// cmd < file1 |
+// cmd < filein
+// cmd args opt
+// cmd args $opts
 int create_cmd_block(char *line, size_t len, t_mnshl *vars)
 {
 	size_t			i;
@@ -117,6 +124,7 @@ int create_cmd_block(char *line, size_t len, t_mnshl *vars)
 	while (i < len)
 	{
 		if (is_separator(&line[i], &flag))
+			// add_cmd(&line[i_begin], i, );
 			;
 			//ce qu'il y a avant il faut le mettre quelque parts
 		// if (flag)

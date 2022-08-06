@@ -6,7 +6,7 @@
 /*   By: tonted <tonted@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:47:21 by jbernard          #+#    #+#             */
-/*   Updated: 2022/05/30 21:08:41 by tonted           ###   ########.fr       */
+/*   Updated: 2022/06/17 00:38:50 by tonted           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	is_operator(char c, unsigned char *flag)
 {
 	if (c == '|')
 	{
-		add_flag(flag, 0x4);
+		add_flag(flag, F_OR);
 		return (true);
 	}
 	return (false);
@@ -139,17 +139,19 @@ bool	is_operator(char c, unsigned char *flag)
 // cmd < filein | cmd args opt |  cmd args "opts |  'cmd' args op | cmd > fileout
 // cmd < filein | cmd args opt |  cmd "args $opts |  'cmd' args op" | cmd > fileout
 // cmd < filein | cmd args opt |  cmd args "opts |  < < <'cmd' args op | cmd > fileout
-
+bool	is_separator(char *ptr, unsigned char *flag);
 int	parse_line(t_mnshl *vars, char *line)
 {
-	WHOAMI
 	unsigned char 	flag;
 	ssize_t	i_begin;
 	ssize_t	i_cur;
 	size_t	len;
+	size_t	amount_parameters;
 
 	i_begin = 0;
 	i_cur = 0;
+	vars->cmds_count = 0;
+	vars->cmds_tab[vars->cmds_count].amount_params = 0;
 	while (line[i_cur])
 	{
 		if (is_quote(line[i_cur], &flag))
@@ -162,6 +164,13 @@ int	parse_line(t_mnshl *vars, char *line)
 			create_cmd_block(&line[i_begin], len, vars);
 			i_begin = i_cur + 1;
 		}
+		if (is_separator(&line[i_cur], NULL) && !is_flag_set(flag, F_SEPARATOR) && i_cur)
+		{
+			amount_parameters++;
+			set_flag(&flag, F_SEPARATOR);
+		}
+		else
+			remove_flag(&flag, F_SEPARATOR);
 		i_cur++;
 	}
 	return (EXIT_SUCCESS);
